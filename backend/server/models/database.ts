@@ -9,6 +9,8 @@ const pool =  new Pool({
   database: 'messages',
 });
 
+interface CreateMessage {title: string, post: string, username_id: number, date_created: string};
+
 interface GetMessages {
   id: number;
   title: string;
@@ -28,8 +30,9 @@ interface UpdateMessage {
   date_created: string;
 }
 
-export const postMessages = (title: string, post: string, username_id: number, date_created: string, cb: (err: Error, result: Object) => void) => {
+export const postMessages = (params: CreateMessage, cb: (err: Error, result: Object) => void) => {
   const q = 'insert into blog_posts (title, post, username_id, date_created) values ($1, $2, $3, $4)';
+  const {title, post, username_id, date_created} = params;
   pool.query(q,[title, post, username_id, date_created], cb);
 }
 
@@ -51,7 +54,6 @@ export const deleteMessages = (id: number, cb: (err: Error, result: Object) => v
 
 export const updateMessages = (id: number, params: UpdateMessage, cb: (err: Error, result: Object) => void) => {
   const {title, post, date_created} = params;
-  console.log(title, post, date_created);
   const q = 'update blog_posts set title = $1, post = $2, date_created = $3 where id = $4';
   pool.query(q,[title, post, date_created, id], cb);
 };

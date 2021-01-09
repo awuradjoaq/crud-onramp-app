@@ -6,12 +6,11 @@ import { Link } from "react-router-dom";
 
 interface MainPageProps {
   posts: {
+    id: number;
+    title: string;
     username_id: number;
     username: string;
-    blog_post_id: number;
-    title: string;
-    post: string;
-    date_posted: string;
+    date_created: string;
   }[]
 }
 
@@ -21,7 +20,7 @@ const MainPage: React.FC<MainPageProps> = (props) => {
       <Search />
       {
         props.posts.map(post => (
-        <BlogPosts post={post} key={post.blog_post_id}/>
+        <BlogPosts post={post} key={post.id}/>
       ))
     }
     </div>

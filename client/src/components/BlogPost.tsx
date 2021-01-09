@@ -3,12 +3,11 @@ import { Link } from "react-router-dom";
 
 interface BlogPostProps {
   post: {
+    id: number;
+    title: string;
     username_id: number;
     username: string;
-    blog_post_id: number;
-    title: string;
-    post: string;
-    date_posted: string;
+    date_created: string;
   };
 }
 
@@ -23,7 +22,7 @@ const BlogPost: React.FC<BlogPostProps> = (props) => {
         <h2>{props.post.title}</h2>
       </Link>
       <h3>{props.post.username}</h3>
-      <h4>{props.post.date_posted}</h4>
+      <h4>{props.post.date_created}</h4>
     </div>
   );
 };

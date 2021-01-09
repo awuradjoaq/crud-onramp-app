@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 
 interface MainPageProps {
-  dummyData: {
+  posts: {
     username_id: number;
     username: string;
     blog_post_id: number;
@@ -20,7 +20,7 @@ const MainPage: React.FC<MainPageProps> = (props) => {
     <div>
       <Search />
       {
-        props.dummyData.map(post => (
+        props.posts.map(post => (
         <BlogPosts post={post} key={post.blog_post_id}/>
       ))
     }

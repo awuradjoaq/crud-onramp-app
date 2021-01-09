@@ -1,6 +1,8 @@
 import React from 'react';
 import MainPage from './components/MainPage';
-import Search from './components/Search';
+import PostDisplay from './components/PostDisplay';
+import { BrowserRouter,Route,Switch } from 'react-router-dom';
+// import Search from './components/Search';
 
 const dummyData = [
   {
@@ -55,10 +57,14 @@ const dummyData = [
 
 const App: React.FC = (props) => {
   return (
-    <div className="App">
-      <Search />
-      <MainPage dummyData={dummyData}/>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Switch>
+          <Route path="/" exact render={() => <MainPage dummyData={dummyData} />}/>
+          <Route path="/blogpost/:id" component={PostDisplay} />
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 };
 

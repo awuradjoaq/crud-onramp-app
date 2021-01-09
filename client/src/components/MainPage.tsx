@@ -1,9 +1,6 @@
 import React from 'react';
-import BlogPosts from './BlogPosts';
-
-// interface Test {
-//   test: {id: number}[];
-// }
+import BlogPosts from './BlogPost';
+import Search from './Search';
 
 interface MainPageProps {
   dummyData: {
@@ -19,6 +16,7 @@ interface MainPageProps {
 const MainPage: React.FC<MainPageProps> = (props) => {
   return (
     <div>
+      <Search />
       {
         props.dummyData.map(post => (
         <BlogPosts post={post} key={post.blog_post_id}/>

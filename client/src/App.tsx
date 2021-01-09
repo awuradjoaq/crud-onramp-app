@@ -2,6 +2,7 @@ import React from 'react';
 import MainPage from './components/MainPage';
 import PostDisplay from './components/PostDisplay';
 import { BrowserRouter,Route,Switch } from 'react-router-dom';
+import HomeButton from './components/HomeButton';
 
 const dummyData = [
   {
@@ -58,6 +59,7 @@ const App: React.FC = (props) => {
   return (
     <BrowserRouter>
       <div className="App">
+        <HomeButton />
         <Switch>
           <Route path="/" exact render={() => <MainPage dummyData={dummyData} />}/>
           <Route path="/blogpost/:id" component={PostDisplay} />

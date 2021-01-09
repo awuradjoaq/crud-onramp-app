@@ -1,6 +1,8 @@
 import React from 'react';
 import BlogPosts from './BlogPost';
 import Search from './Search';
+import { Link } from "react-router-dom";
+
 
 interface MainPageProps {
   dummyData: {

@@ -18,7 +18,7 @@ interface BlogViewState {
 const BlogPost: React.FC<BlogPostProps> = (props) => {
   return (
     <div>
-      <Link to="blogpost/:id">
+      <Link to={`/${props.post.id}`}>
         <h2>{props.post.title}</h2>
       </Link>
       <h3>{props.post.username}</h3>

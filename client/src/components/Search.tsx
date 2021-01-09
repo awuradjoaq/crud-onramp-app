@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 
 
 const Search: React.FC = () => {
-  const [name, setName] = useState('');
+  // const [name, setName] = useState('');
   return (
     <form>
       <label>

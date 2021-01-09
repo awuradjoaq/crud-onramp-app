@@ -7,7 +7,7 @@ router.post('/', createMessage);
 
 router.get('/', retrieveMessages);
 
-router.delete('/', removeMessages);
+router.delete('/:id', removeMessages);
 
 router.patch('/:id');
 

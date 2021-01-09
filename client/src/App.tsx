@@ -2,7 +2,6 @@ import React from 'react';
 import MainPage from './components/MainPage';
 import PostDisplay from './components/PostDisplay';
 import { BrowserRouter,Route,Switch } from 'react-router-dom';
-// import Search from './components/Search';
 
 const dummyData = [
   {

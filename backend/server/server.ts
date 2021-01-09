@@ -9,7 +9,7 @@ const port = 3001
 
 app.use(json());
 
-app.use('/todos', routes);
+app.use('/blog', routes);
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   res.status(500).json({message: err.message});

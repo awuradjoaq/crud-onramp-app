@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 interface BlogPostProps {
   post: {
@@ -26,7 +27,9 @@ class BlogPost extends React.Component<BlogPostProps, BlogViewState> {
   render() {
     return (
       <div>
-        <h2>{this.props.post.title}</h2>
+        <Link to='blogpost/:id'>
+          <h2>{this.props.post.title}</h2>
+        </Link>
         <h3>{this.props.post.username}</h3>
         <h4>{this.props.post.date_posted}</h4>
       </div>

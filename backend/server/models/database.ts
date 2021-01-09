@@ -46,6 +46,10 @@ export const getMessage = (id: number, cb: (err: Error, result: QueryResult<GetM
   pool.query(q, [id], cb);
 }
 
+export const getFavoriteMessages = (id: number, cb: (err: Error, result: Object) => void) => {
+  const q = 'select favorited.id, favorited.username_id, favorited.blog_post_id, blog_posts.title, blog_posts.username_id, usernames.username, blog_posts.date_created from favorited inner join blog_posts on blog_posts.id = favorited.blog_post_id inner join usernames on usernames.id = blog_posts.username_id where favorited.username_id = $1';
+  pool.query(q, [id], cb);
+}
 
 export const deleteMessages = (id: number, cb: (err: Error, result: Object) => void) => {
   const q = 'delete from blog_posts where id = $1';

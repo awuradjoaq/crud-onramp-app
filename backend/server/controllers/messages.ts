@@ -2,7 +2,7 @@ import { RequestHandler } from 'express';
 
 // import { Message } from '../models/messages';
 
-import { postMessages, getMessages, getMessage, deleteMessages, updateMessages } from '../models/database';
+import { postMessages, getMessages, getMessage, deleteMessages, updateMessages, getFavoriteMessages } from '../models/database';
 
 interface CreateMessage {title: string, post: string, username_id: number, date_created: string}
 
@@ -34,6 +34,18 @@ export const retrieveMessage: RequestHandler = (req, res, next) => {
   const {id} = req.params;
   const numId = +id;
   getMessage(numId, (err, result) => {
+    if (err) {
+      res.status(400).send(err);
+    } else {
+      res.status(200).send(result.rows)
+    }
+  })
+}
+
+export const retrieveFavoriteMessages: RequestHandler = (req, res, next) => {
+  const {userId} = req.params;
+  const numId = +userId;
+  getFavoriteMessages(numId, (err, result) => {
     if (err) {
       res.status(400).send(err);
     } else {

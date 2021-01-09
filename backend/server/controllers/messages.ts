@@ -2,9 +2,15 @@ import { RequestHandler } from 'express';
 
 // import { Message } from '../models/messages';
 
-import { postMessages, getMessages, getMessage, deleteMessages } from '../models/database';
+import { postMessages, getMessages, getMessage, deleteMessages, updateMessages } from '../models/database';
 
 interface NewMessage {title: string, id: number, post: string, username_id: number, date_created: string}
+
+interface UpdateMessage {
+  title: string;
+  post: string;
+  date_created: string;
+}
 
 export const createMessage: RequestHandler = (req, res, next) => {
   const {title, post, username_id, date_created}: NewMessage = req.body;
@@ -44,3 +50,17 @@ export const removeMessages: RequestHandler = (req, res, next) => {
     res.status(201).send('successfully deleted');
   });
 };
+
+export const updatedMessages: RequestHandler = (req, res, next) => {
+  const fields: UpdateMessage = req.body;
+  const {id} = req.params;
+  const numId = +id;
+  console.log(numId);
+  updateMessages(numId, fields, (err, result) => {
+    if (err) {
+      res.status(400).send(err);
+    } else {
+      res.status(204).send('successfully updated');
+    }
+  })
+}

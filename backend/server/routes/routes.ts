@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createMessage, retrieveMessages, retrieveMessage, removeMessages } from '../controllers/messages';
+import { createMessage, retrieveMessages, retrieveMessage, removeMessages, updatedMessages } from '../controllers/messages';
 
 const router = Router();
 
@@ -16,6 +16,6 @@ router.get('/:id', retrieveMessage);
 router.delete('/:id', removeMessages);
 
 // UPDATE one blog post
-router.patch('/:id');
+router.patch('/:id', updatedMessages);
 
 export default router;

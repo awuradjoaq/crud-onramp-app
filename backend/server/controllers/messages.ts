@@ -49,6 +49,7 @@ export const retrieveFavoriteMessages: RequestHandler = (req, res, next) => {
     if (err) {
       res.status(400).send(err);
     } else {
+      console.log(result.rows);
       res.status(200).send(result.rows)
     }
   })

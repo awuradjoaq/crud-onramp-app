@@ -22,7 +22,7 @@ const App: React.FC = (props) => {
       <BrowserRouter>
         <div className="App">
           <HomeButton />
-          <Link to="/favorites">
+          <Link to="/favorites/1">
             <button>Favorited Blogs</button>
           </Link>
           <Switch>
@@ -31,7 +31,7 @@ const App: React.FC = (props) => {
               exact
               render={() => <MainPage posts={posts} />}
             />
-            <Route path="/favorites" exact component={Favorites} />
+            <Route path="/favorites/:id" exact component={Favorites} />
             <Route path="/:id" component={PostDisplay} />
           </Switch>
         </div>

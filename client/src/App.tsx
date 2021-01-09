@@ -1,8 +1,9 @@
 import React from 'react';
 import MainPage from './components/MainPage';
 import PostDisplay from './components/PostDisplay';
-import { BrowserRouter,Route,Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import HomeButton from './components/HomeButton';
+import Favorites from './components/Favorites';
 
 const dummyData = [
   {
@@ -60,9 +61,17 @@ const App: React.FC = (props) => {
     <BrowserRouter>
       <div className="App">
         <HomeButton />
+        <Link to="/favorites">
+          <button>Favorited Blogs</button>
+        </Link>
         <Switch>
-          <Route path="/" exact render={() => <MainPage dummyData={dummyData} />}/>
-          <Route path="/blogpost/:id" component={PostDisplay} />
+          <Route
+            path="/"
+            exact
+            render={() => <MainPage dummyData={dummyData} />}
+          />
+          <Route path="/blogpost/:id" exact component={PostDisplay} />
+          <Route path="/favorites" exact component={Favorites} />
         </Switch>
       </div>
     </BrowserRouter>

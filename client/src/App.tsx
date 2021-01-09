@@ -60,10 +60,6 @@ const dummyData = [
 const App: React.FC = (props) => {
   const [show, setShow] = useState(false);
 
-  // const showModal: Function = () => {
-  //   useShow(!show);
-  // }
-
   return (
     <div>
       <BrowserRouter>

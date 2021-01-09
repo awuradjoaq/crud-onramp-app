@@ -2,7 +2,7 @@ import { RequestHandler } from 'express';
 
 // import { Message } from '../models/messages';
 
-import { postMessages, getMessages, deleteMessages } from '../models/database';
+import { postMessages, getMessages, getMessage, deleteMessages } from '../models/database';
 
 interface NewMessage {title: string, id: number, post: string, username_id: number, date_created: string}
 
@@ -23,6 +23,18 @@ export const retrieveMessages: RequestHandler = (req, res, next) => {
     res.status(200).send(result.rows);
   });
 };
+
+export const retrieveMessage: RequestHandler = (req, res, next) => {
+  const {id} = req.params;
+  const numId = +id;
+  getMessage(numId, (err, result) => {
+    if (err) {
+      res.status(400).send(err);
+    } else {
+      res.status(200).send(result.rows)
+    }
+  })
+}
 
 export const removeMessages: RequestHandler = (req, res, next) => {
   const {id} = req.params;

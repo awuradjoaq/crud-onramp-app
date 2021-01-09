@@ -1,5 +1,5 @@
 import React from 'react';
-import BlogPost from './BlogPost';
+import BlogPosts from './BlogPosts';
 
 // interface Test {
 //   test: {id: number}[];
@@ -21,7 +21,7 @@ const MainPage: React.FC<MainPageProps> = (props) => {
     <div>
       {
         props.dummyData.map(post => (
-        <BlogPost post={post} key={post.blog_post_id}/>
+        <BlogPosts post={post} key={post.blog_post_id}/>
       ))
     }
     </div>

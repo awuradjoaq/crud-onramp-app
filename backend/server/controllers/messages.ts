@@ -20,12 +20,11 @@ export const createMessage: RequestHandler = (req, res, next) => {
 
 export const retrieveMessages: RequestHandler = (req, res, next) => {
   getMessages((err, result) => {
-    res.status(200).send(result);
+    res.status(200).send(result.rows);
   });
 };
 
 export const removeMessages: RequestHandler = (req, res, next) => {
-  console.log('i ran!');
   const {id} = req.params;
   const numId = +id;
   deleteMessages(numId, (err, result) => {

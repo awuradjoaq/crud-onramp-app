@@ -15,9 +15,13 @@ export const postMessages = (title: string, post: string, username_id: number, d
 }
 
 export const getMessages = (cb: (err: Object, result: Object) => void) => {
-  const q = 'select * from blog_posts';
+  const q = 'select blog_posts.id, blog_posts.title, blog_posts.post, blog_posts.username_id, usernames.username, blog_posts.date_created from blog_posts inner join usernames on usernames.id = blog_posts.username_id';
   pool.query(q, cb);
 }
+
+// export const getMessage = (id: number, cb: (err: Object, result: Object) => void) => {
+//   const q = 'select'
+// }
 
 
 export const deleteMessages = (id: number, cb: (err: Object, result: Object) => void) => {

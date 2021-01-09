@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import MainPage from './components/MainPage';
 import PostDisplay from './components/PostDisplay';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import HomeButton from './components/HomeButton';
 import Favorites from './components/Favorites';
+import NewBlogPost from './components/NewBlogPost';
 
 const dummyData = [
   {
@@ -57,24 +58,36 @@ const dummyData = [
 ]
 
 const App: React.FC = (props) => {
+  const [show, setShow] = useState(false);
+
+  // const showModal: Function = () => {
+  //   useShow(!show);
+  // }
+
   return (
-    <BrowserRouter>
-      <div className="App">
-        <HomeButton />
-        <Link to="/favorites">
-          <button>Favorited Blogs</button>
-        </Link>
-        <Switch>
-          <Route
-            path="/"
-            exact
-            render={() => <MainPage dummyData={dummyData} />}
-          />
-          <Route path="/blogpost/:id" exact component={PostDisplay} />
-          <Route path="/favorites" exact component={Favorites} />
-        </Switch>
-      </div>
-    </BrowserRouter>
+    <div>
+      <BrowserRouter>
+        <div className="App">
+          <HomeButton />
+          <Link to="/favorites">
+            <button>Favorited Blogs</button>
+          </Link>
+          <Switch>
+            <Route
+              path="/"
+              exact
+              render={() => <MainPage dummyData={dummyData} />}
+            />
+            <Route path="/blogpost/:id" exact component={PostDisplay} />
+            <Route path="/favorites" exact component={Favorites} />
+          </Switch>
+        </div>
+      </BrowserRouter>
+      <button onClick={() => setShow(!show)}>
+        Create New Blog Post
+      </button>
+      <NewBlogPost show={show} onClose={() => setShow(!show)}/>
+    </div>
   );
 };
 

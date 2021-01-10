@@ -7,10 +7,11 @@ interface DeleteBlogProps {
 }
 
 const DeleteBlogPost: React.FC<DeleteBlogProps> = (props) => {
+
   const removeBlogPost  = () => {
     axios.delete(`/blog/${props.id}`)
     .then(() => axios.get('/blog/')
-    .then(result => props.setPosts? props.setPosts(result) : null)
+    .then(result => props.setPosts? props.setPosts(result.data) : null)
     .catch(error => console.log(error)))
     .catch(error => console.log(error));
 

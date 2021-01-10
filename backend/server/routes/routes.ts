@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createMessage, retrieveMessages, retrieveMessage, removeMessages, updatedMessages,retrieveFavoriteMessages, createUser, retrieveUser, createFavorite } from '../controllers/messages';
+import { createMessage, retrieveMessages, retrieveMessage, removeMessages, updatedMessages,retrieveFavoriteMessages, createUser, retrieveUser, createFavorite, removeFavorited } from '../controllers/messages';
 
 const router = Router();
 
@@ -26,6 +26,9 @@ router.get('/favorites/:userId', retrieveFavoriteMessages);
 
 // DELETE one blog post
 router.delete('/:id', removeMessages);
+
+// DELETE favorited blog post
+router.delete('/favorites/:userId', removeFavorited);
 
 // UPDATE one blog post
 router.patch('/:id', updatedMessages);

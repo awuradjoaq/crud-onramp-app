@@ -1,6 +1,6 @@
 import { RequestHandler } from 'express';
 
-import { postMessages, getMessages, getMessage, deleteMessages, updateMessages, getFavoriteMessages, postUser, getUser, postFavorites } from '../models/database';
+import { postMessages, getMessages, getMessage, deleteMessages, updateMessages, getFavoriteMessages, postUser, getUser, postFavorites, deleteFavorited } from '../models/database';
 
 interface CreateMessage {title: string, post: string, username_id: number, date_created: string}
 
@@ -17,6 +17,10 @@ interface PostUser {
 
 interface PostFavorites {
   blog_post_id: number;
+}
+
+interface RemoveFavorites {
+  id: number;
 }
 
 export const createMessage: RequestHandler = (req, res, next) => {
@@ -107,6 +111,18 @@ export const removeMessages: RequestHandler = (req, res, next) => {
     }
   });
 };
+
+export const removeFavorited: RequestHandler = (req, res, next) => {
+  // FIX TYPE
+  const {id} = req.body;
+  deleteFavorited(id,(err, result) => {
+    if (err) {
+      res.status(400).send(err)
+    } else {
+      res.status(204).send()
+    }
+  })
+}
 
 export const updatedMessages: RequestHandler = (req, res, next) => {
   const fields: UpdateMessage = req.body;

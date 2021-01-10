@@ -91,6 +91,11 @@ export const deleteMessages = (id: number, cb: (err: Error, result: Object) => v
   pool.query(q, [id], cb);
 }
 
+export const deleteFavorited = (id: number, cb: (err: Error, result: Object) => void) => {
+  const q = 'delete from favorited where id = $1';
+  pool.query(q, [id], cb);
+}
+
 export const updateMessages = (id: number, params: UpdateMessage, cb: (err: Error, result: Object) => void) => {
   const {title, post, date_created} = params;
   const q = 'update blog_posts set title = $1, post = $2, date_created = $3 where id = $4';

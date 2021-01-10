@@ -20,21 +20,32 @@ const App: React.FC = (props) => {
   useEffect(() => {
     console.log('App useEffect ran!')
     if (isAuthenticated) {
-      console.log('im here in the if block')
       let test = JSON.parse(`${JSON.stringify(user, null, 2)}`);
       axios.post('/blog/user', {
         username: test.nickname,
         auth_id: test.sub
       })
-      .then(() => axios.get(`/blog/user/${test.sub}`)
-      .then((result) => setClient(result.data))
-      // .then((blogs) => axios.get('/blog'))
-      .catch((error) => console.log(error)))
+      .then(() => axios.all([
+        axios.get(`/blog/user/${test.sub}`),
+        axios.get('/blog')
+      ])
+      .then(axios.spread((userInfo, blogInfo) => {
+        setClient(userInfo.data);
+        setPosts(blogInfo.data);
+      }))
+      .catch(axios.spread((userError, blogError) => {
+        console.log('user error', userError, 'blogError', blogError)
+      })))
+      .catch((error) => console.log(error))
     }
-    // axios.get("/blog")
-    //   .then((result) => setPosts(result.data))
-    //   .catch((error) => console.log(error));
+
   }, [isAuthenticated]);
+
+  const getBlogs = (endpoint:string, stateSetter:any) => {
+    axios.get(endpoint)
+    .then(result => stateSetter(result.data))
+    .catch(error => console.log(error))
+  }
 
   if (isAuthenticated) {
     return (

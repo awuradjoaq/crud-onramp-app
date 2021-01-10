@@ -13,11 +13,7 @@ interface BlogPostProps {
   setPosts?: Function;
 }
 
-interface BlogViewState {
-  postViewed: boolean;
-}
-
-const BlogPost: React.FC<BlogPostProps> = (props) => {
+const PostDisplay: React.FC<BlogPostProps> = (props) => {
   return (
     <div>
       <DeleteBlogPost id={props.post.id} setPosts={props.setPosts} />
@@ -30,4 +26,4 @@ const BlogPost: React.FC<BlogPostProps> = (props) => {
   );
 };
 
-export default BlogPost;
+export default PostDisplay;

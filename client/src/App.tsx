@@ -8,7 +8,6 @@ import NewBlogPost from "./components/NewBlogPost";
 import axios from "axios";
 import LogInPage from "./components/LoginPage";
 import LogOutPage from "./components/LogOutPage";
-import User from "./components/User";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const App: React.FC = (props) => {
@@ -19,7 +18,7 @@ const App: React.FC = (props) => {
   const { isAuthenticated, user } = useAuth0();
 
   useEffect(() => {
-    console.log('i ran!')
+    console.log('App useEffect ran!')
     if (isAuthenticated) {
       console.log('im here in the if block')
       let test = JSON.parse(`${JSON.stringify(user, null, 2)}`);
@@ -29,6 +28,7 @@ const App: React.FC = (props) => {
       })
       .then(() => axios.get(`/blog/user/${test.sub}`)
       .then((result) => setClient(result.data))
+      // .then((blogs) => axios.get('/blog'))
       .catch((error) => console.log(error)))
     }
     // axios.get("/blog")
@@ -40,7 +40,6 @@ const App: React.FC = (props) => {
     return (
       <div>
         <LogOutPage />
-        <User />
         <BrowserRouter>
           <div className="App">
             <HomeButton />

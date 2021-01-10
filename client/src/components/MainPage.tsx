@@ -9,7 +9,8 @@ interface MainPageProps {
     username_id: number;
     username: string;
     date_created: string;
-  }[]
+  }[],
+  setPosts?: Function
 }
 
 const MainPage: React.FC<MainPageProps> = (props) => {
@@ -18,7 +19,7 @@ const MainPage: React.FC<MainPageProps> = (props) => {
       <Search />
       {
         props.posts.map(post => (
-        <BlogPosts post={post} key={post.id}/>
+        <BlogPosts post={post} key={post.id} setPosts={props.setPosts} />
       ))
     }
     </div>

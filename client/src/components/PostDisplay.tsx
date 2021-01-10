@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import BlogPost from './BlogPost';
+import { RouteComponentProps } from 'react-router-dom';
 
 interface BlogPostProps {
     id: number;
@@ -11,9 +12,11 @@ interface BlogPostProps {
     post: string;
 };
 
-const PostDisplay: React.FC = (props: any) => {
+const PostDisplay: React.FC<RouteComponentProps<{id:string}>> = (props) => {
 
   const [display, setDisplay] = useState<BlogPostProps | null>(null);
+
+  console.log(props);
 
   useEffect(() => {
     axios.get(`/blog/${props.match.params.id}`)

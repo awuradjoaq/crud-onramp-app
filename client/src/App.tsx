@@ -29,7 +29,7 @@ const App: React.FC = (props) => {
             <Route
               path="/"
               exact
-              render={() => <MainPage posts={posts} />}
+              render={() => <MainPage posts={posts} setPosts={setPosts} />}
             />
             <Route path="/favorites/:id" exact component={Favorites} />
             <Route path="/:id" component={PostDisplay} />

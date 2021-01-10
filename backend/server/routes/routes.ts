@@ -1,10 +1,16 @@
 import { Router } from 'express';
-import { createMessage, retrieveMessages, retrieveMessage, removeMessages, updatedMessages,retrieveFavoriteMessages } from '../controllers/messages';
+import { createMessage, retrieveMessages, retrieveMessage, removeMessages, updatedMessages,retrieveFavoriteMessages, createUser, retrieveUser } from '../controllers/messages';
 
 const router = Router();
 
 // POST new blog post
 router.post('/', createMessage);
+
+// POST new user
+router.post('/user', createUser);
+
+// GET current user
+router.get('/user/:authId', retrieveUser);
 
 // GET all blog posts
 router.get('/', retrieveMessages);

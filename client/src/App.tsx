@@ -18,8 +18,7 @@ const App: React.FC = (props) => {
   const { isAuthenticated } = useAuth0();
 
   useEffect(() => {
-    axios
-      .get("/blog")
+    axios.get("/blog")
       .then((result) => setPosts(result.data))
       .catch((error) => console.log(error));
   }, []);

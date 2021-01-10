@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import DeleteBlogPost from './DeleteBlogPost';
+import FavoriteButton from "./FavoriteButton";
 
 interface BlogPostProps {
   post: {
@@ -17,6 +18,7 @@ const PostDisplay: React.FC<BlogPostProps> = (props) => {
   return (
     <div>
       <DeleteBlogPost id={props.post.id} setPosts={props.setPosts} />
+      <FavoriteButton />
       <Link to={`/${props.post.id}`}>
         <h2>{props.post.title}</h2>
       </Link>

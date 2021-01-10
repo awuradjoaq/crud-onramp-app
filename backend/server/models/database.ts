@@ -44,6 +44,10 @@ interface GetUser extends PostUser {
   id: number;
 }
 
+interface PostFavorites {
+  blog_post_id: number;
+}
+
 export const postMessages = (params: CreateMessage, cb: (err: Error, result: Object) => void) => {
   const q = 'insert into blog_posts (title, post, username_id, date_created) values ($1, $2, $3, $4)';
   const {title, post, username_id, date_created} = params;
@@ -61,6 +65,11 @@ export const getUser = (auth_id: string, cb: (err: Error, result: QueryResult<Ge
   pool.query(q, [auth_id], cb);
 }
 
+export const postFavorites = (id: number, params: PostFavorites, cb:(err: Error, result: Object) => void) => {
+  const q = 'insert into favorited (username_id, blog_post_id) values ($1, $2)';
+  const {blog_post_id} = params;
+  pool.query(q,[id, blog_post_id], cb);
+}
 
 export const getMessages = (cb: (err: Error, result: QueryResult<GetMessages[]>) => void) => {
   const q = 'select blog_posts.id, blog_posts.title, blog_posts.username_id, usernames.username, blog_posts.date_created from blog_posts inner join usernames on usernames.id = blog_posts.username_id';

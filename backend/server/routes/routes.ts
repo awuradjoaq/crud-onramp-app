@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createMessage, retrieveMessages, retrieveMessage, removeMessages, updatedMessages,retrieveFavoriteMessages, createUser, retrieveUser } from '../controllers/messages';
+import { createMessage, retrieveMessages, retrieveMessage, removeMessages, updatedMessages,retrieveFavoriteMessages, createUser, retrieveUser, createFavorite } from '../controllers/messages';
 
 const router = Router();
 
@@ -8,6 +8,9 @@ router.post('/', createMessage);
 
 // POST new user
 router.post('/user', createUser);
+
+// POST new favorite
+router.post('/favorites/:userId', createFavorite);
 
 // GET current user
 router.get('/user/:authId', retrieveUser);

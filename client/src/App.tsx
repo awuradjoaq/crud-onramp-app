@@ -14,14 +14,27 @@ import { useAuth0 } from "@auth0/auth0-react";
 const App: React.FC = (props) => {
   const [show, setShow] = useState(false);
   const [posts, setPosts] = useState([]);
+  const [client, setClient] = useState([]);
 
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
 
   useEffect(() => {
-    axios.get("/blog")
-      .then((result) => setPosts(result.data))
-      .catch((error) => console.log(error));
-  }, []);
+    console.log('i ran!')
+    if (isAuthenticated) {
+      console.log('im here in the if block')
+      let test = JSON.parse(`${JSON.stringify(user, null, 2)}`);
+      axios.post('/blog/user', {
+        username: test.nickname,
+        auth_id: test.sub
+      })
+      .then(() => axios.get(`/blog/user/${test.sub}`)
+      .then((result) => setClient(result.data))
+      .catch((error) => console.log(error)))
+    }
+    // axios.get("/blog")
+    //   .then((result) => setPosts(result.data))
+    //   .catch((error) => console.log(error));
+  }, [isAuthenticated]);
 
   if (isAuthenticated) {
     return (

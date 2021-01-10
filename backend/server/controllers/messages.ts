@@ -32,6 +32,7 @@ export const createUser: RequestHandler = (req, res, next) => {
   const params: PostUser = req.body;
   postUser(params, (err, result) => {
     if (err) {
+      console.log(err);
       res.status(400).send(err)
     } else {
       res.status(201).send()

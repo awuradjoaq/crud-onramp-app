@@ -51,7 +51,7 @@ export const postMessages = (params: CreateMessage, cb: (err: Error, result: Obj
 };
 
 export const postUser = (params: PostUser, cb:(err: Error, result: Object) => void) => {
-  const q = 'insert into usernames (username, auth_id) values ($1, $2)';
+  const q = 'insert into usernames (username, auth_id) values ($1, $2) on conflict do nothing';
   const {username, auth_id} = params;
   pool.query(q,[username, auth_id], cb);
 };

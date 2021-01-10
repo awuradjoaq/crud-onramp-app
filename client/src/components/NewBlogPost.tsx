@@ -38,7 +38,6 @@ interface NewBlogPostProps {
 };
 
 const NewBlogPost: React.FC<NewBlogPostProps> = (props) => {
-
   if (!props.show) {
     return null;
   }

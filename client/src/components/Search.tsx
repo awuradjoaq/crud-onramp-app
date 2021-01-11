@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 
 interface SearchPageProps {
   posts: {
@@ -33,6 +34,7 @@ const Search: React.FC<SearchPageProps> = (props) => {
         <option value="title">Title</option>
       </select>
       <input type="text" value={value} onChange={e => setValue(e.target.value)}></input>
+      <h3>X</h3>
       <input type="submit" value="Submit" />
     </form>
   );

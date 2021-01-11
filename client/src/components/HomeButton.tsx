@@ -1,10 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
-const HomeButton: React.FC = () => {
+interface HomeButtonProps {
+  setPosts: Function;
+  posts: {[key: string]: string | number}[];
+}
+
+const HomeButton: React.FC<HomeButtonProps> = (props) => {
+
+  const retrievePosts = () => {
+    axios.get('/blog')
+    .then((result) => props.setPosts(result.data))
+    .catch(error => console.log(error))
+  }
+
   return (
     <Link to="/">
-      <button>View All Blog Posts</button>
+      <button onClick={retrievePosts}>View All Blog Posts</button>
     </Link>
   );
 };

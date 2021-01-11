@@ -17,6 +17,7 @@ const App: React.FC = (props) => {
   const [client, setClient] = useState(undefined);
   const [favorites, setFavorites] = useState([]);
 
+
   const { isAuthenticated, user } = useAuth0();
 
   useEffect(() => {
@@ -46,11 +47,11 @@ const App: React.FC = (props) => {
 
   }, [isAuthenticated]);
 
-  const getBlogs = (endpoint:string, stateSetter:any) => {
-    axios.get(endpoint)
-    .then(result => stateSetter(result.data))
-    .catch(error => console.log(error))
-  }
+  // const getBlogs = (endpoint:string, stateSetter:any) => {
+  //   axios.get(endpoint)
+  //   .then(result => stateSetter(result.data))
+  //   .catch(error => console.log(error))
+  // }
 
   if (isAuthenticated) {
     return (
@@ -58,7 +59,7 @@ const App: React.FC = (props) => {
         <LogOutPage />
         <BrowserRouter>
           <div className="App">
-            <HomeButton />
+            <HomeButton setPosts={setPosts} posts={posts}/>
             <Link to={`/favorites/1`}>
               <button>Favorited Blogs</button>
             </Link>

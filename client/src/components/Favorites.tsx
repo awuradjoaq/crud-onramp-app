@@ -4,7 +4,7 @@ import MainPage from './MainPage';
 import { RouteComponentProps } from 'react-router-dom';
 
 const Favorites: React.FC<RouteComponentProps<{id:string}>> = (props) => {
-  
+
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ const Favorites: React.FC<RouteComponentProps<{id:string}>> = (props) => {
   }, []);
 
   if (favorites) {
-    return <MainPage posts={favorites}/>
+    return <MainPage posts={favorites} />
   } else {
     return null;
   }

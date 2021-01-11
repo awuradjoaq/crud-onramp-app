@@ -13,7 +13,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 const App: React.FC = (props) => {
   const [show, setShow] = useState(false);
   const [posts, setPosts] = useState([]);
-  const [client, setClient] = useState([]);
+  const [client, setClient] = useState(undefined);
 
   const { isAuthenticated, user } = useAuth0();
 
@@ -30,7 +30,7 @@ const App: React.FC = (props) => {
         axios.get('/blog')
       ])
       .then(axios.spread((userInfo, blogInfo) => {
-        setClient(userInfo.data);
+        setClient(userInfo.data[0]);
         setPosts(blogInfo.data);
       }))
       .catch(axios.spread((userError, blogError) => {
@@ -54,14 +54,14 @@ const App: React.FC = (props) => {
         <BrowserRouter>
           <div className="App">
             <HomeButton />
-            <Link to="/favorites/1">
+            <Link to={`/favorites/1`}>
               <button>Favorited Blogs</button>
             </Link>
             <Switch>
               <Route
                 path="/"
                 exact
-                render={() => <MainPage posts={posts} setPosts={setPosts} />}
+                render={() => <MainPage posts={posts} setPosts={setPosts} userId={client}/>}
               />
               <Route path="/favorites/:id" exact component={Favorites} />
               <Route path="/:id" component={PostDisplay} />

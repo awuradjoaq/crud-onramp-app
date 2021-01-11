@@ -16,7 +16,7 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = (props) => {
     axios.post(`/blog/favorites/${props.userId!.id}`, {
       blog_post_id: props.id
     })
-    .then(result => console.log(result))
+    .then()
     .catch(error => console.log(error))
   }
 

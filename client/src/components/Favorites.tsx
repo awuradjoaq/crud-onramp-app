@@ -6,7 +6,6 @@ import FavoritesPage from './FavoritesPage';
 const Favorites: React.FC<RouteComponentProps<{id:string}>> = (props) => {
 
   const [favorites, setFavorites] = useState([]);
-
   useEffect(() => {
     axios.get(`/blog/favorites/${props.match.params.id}`)
     .then(result => setFavorites(result.data))

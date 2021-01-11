@@ -15,7 +15,6 @@ const App: React.FC = (props) => {
   const [show, setShow] = useState(false);
   const [posts, setPosts] = useState([]);
   const [client, setClient] = useState(undefined);
-  const [favorites, setFavorites] = useState([]);
 
 
   const { isAuthenticated, user } = useAuth0();
@@ -35,9 +34,6 @@ const App: React.FC = (props) => {
       .then(axios.spread((userInfo, blogInfo) => {
         setClient(userInfo.data[0]);
         setPosts(blogInfo.data);
-        axios.get(`/blog/favorites/${userInfo.data[0].id}`)
-        .then(result => setFavorites(result.data))
-        .catch(error => console.log(error))
       }))
       .catch(axios.spread((userError, blogError) => {
         console.log('user error', userError, 'blogError', blogError)
@@ -53,7 +49,7 @@ const App: React.FC = (props) => {
   //   .catch(error => console.log(error))
   // }
 
-  if (isAuthenticated) {
+  if (isAuthenticated && client) {
     return (
       <div>
         <LogOutPage />

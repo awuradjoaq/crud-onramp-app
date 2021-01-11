@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import FavoritesPage from './FavoritesPage';
-import DeleteBlogPost from './DeleteBlogPost';
 import FavoriteButton from './FavoriteButton';
 import { Link }  from 'react-router-dom';
 

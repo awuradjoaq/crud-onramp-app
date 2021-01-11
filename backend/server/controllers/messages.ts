@@ -7,7 +7,6 @@ interface CreateMessage {title: string, post: string, username_id: number, date_
 interface UpdateMessage {
   title: string;
   post: string;
-  date_created: string;
 }
 
 interface PostUser {

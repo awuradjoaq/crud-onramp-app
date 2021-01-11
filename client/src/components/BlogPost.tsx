@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import DeleteBlogPost from './DeleteBlogPost';
-import FavoriteButton from "./FavoriteButton";
+import FavoriteButton from './FavoriteButton';
 
 interface BlogPostProps {
   post: {

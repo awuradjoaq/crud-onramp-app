@@ -97,8 +97,8 @@ export const deleteFavorited = (id: number, cb: (err: Error, result: Object) => 
 }
 
 export const updateMessages = (id: number, params: UpdateMessage, cb: (err: Error, result: Object) => void) => {
-  const {title, post, date_created} = params;
-  const q = 'update blog_posts set title = $1, post = $2, date_created = $3 where id = $4';
-  pool.query(q,[title, post, date_created, id], cb);
+  const {title, post} = params;
+  const q = 'update blog_posts set title = $1, post = $2, date_created = current_timestamp where id = $3';
+  pool.query(q,[title, post, id], cb);
 };
 

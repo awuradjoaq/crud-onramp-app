@@ -11,6 +11,9 @@ interface BlogPostProps {
     username: string;
     date_created: string;
     post: string;
+    userId: {
+      id: number;
+    }
 };
 // RouteComponentProps<{id:string}>
 // FIX TYPE
@@ -25,12 +28,14 @@ const PostDisplay: React.FC<any> = (props) => {
     .then(result => setDisplay(result.data[0]))
     .catch(error => console.log(error));
   },[]);
-  if (display) {
+  if (display && (props.userId.id === display.username_id)) {
     return (
       <>
       <span>{display.post}</span>
       <UpdateBlogPost title={display.title} post={display.post} username_id={display.username_id} id={display.id} setPosts={props.setPosts}/>
     </>);
+  } else if (display){
+    return <span>{display.post}</span>
   } else {
     return null;
   }

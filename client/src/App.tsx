@@ -69,7 +69,7 @@ const App: React.FC = (props) => {
                 render={() => <MainPage posts={posts} setPosts={setPosts} userId={client}/>}
               />
               <Route path="/favorites/:id" exact component={Favorites} />
-              <Route path="/:id" render={(props) => <PostDisplay {...props} setPosts={setPosts}/>} />
+              <Route path="/:id" render={(props) => <PostDisplay {...props} setPosts={setPosts} userId={client}/>} />
             </Switch>
           </div>
         </BrowserRouter>

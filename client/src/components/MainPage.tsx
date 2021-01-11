@@ -19,7 +19,7 @@ interface MainPageProps {
 const MainPage: React.FC<MainPageProps> = (props) => {
   return (
     <div>
-      <Search />
+      <Search posts={props.posts} setPosts={props.setPosts}/>
       {
         props.posts.map(post => (
         <BlogPosts post={post} key={post.id} setPosts={props.setPosts} userId={props.userId}/>

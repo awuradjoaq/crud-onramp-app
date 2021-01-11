@@ -20,14 +20,8 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = (props) => {
     .catch(error => console.log(error))
   }
 
-  const deleteFavorite = () => {
-    axios.delete(`/blog/favorites/${props.userId!.id}`)
-    .then(result => console.log(result))
-    .catch(error => console.log(error))
-  }
-
   return(
-    <i className="far fa-heart" onClick={props.saved ?deleteFavorite : addFavorite}></i>
+    <i className="far fa-heart" onClick={addFavorite}></i>
   )
 };
 

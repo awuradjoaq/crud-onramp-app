@@ -9,7 +9,7 @@ const pool =  new Pool({
   database: 'messages',
 });
 
-interface CreateMessage {title: string, post: string, username_id: number, date_created: string};
+interface CreateMessage {title: string, post: string, username_id: number};
 
 interface GetMessages {
   id: number;
@@ -49,9 +49,9 @@ interface PostFavorites {
 }
 
 export const postMessages = (params: CreateMessage, cb: (err: Error, result: Object) => void) => {
-  const q = 'insert into blog_posts (title, post, username_id, date_created) values ($1, $2, $3, $4)';
-  const {title, post, username_id, date_created} = params;
-  pool.query(q,[title, post, username_id, date_created], cb);
+  const q = 'insert into blog_posts (title, post, username_id, date_created) values ($1, $2, $3, current_timestamp)';
+  const {title, post, username_id} = params;
+  pool.query(q,[title, post, username_id], cb);
 };
 
 export const postUser = (params: PostUser, cb:(err: Error, result: Object) => void) => {

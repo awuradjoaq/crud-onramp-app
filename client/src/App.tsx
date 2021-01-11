@@ -11,6 +11,7 @@ import LogOutPage from "./components/LogOutPage";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const App: React.FC = (props) => {
+
   const [show, setShow] = useState(false);
   const [posts, setPosts] = useState([]);
   const [client, setClient] = useState(undefined);
@@ -73,7 +74,7 @@ const App: React.FC = (props) => {
           </div>
         </BrowserRouter>
         <button onClick={() => setShow(!show)}>Create New Blog Post</button>
-        <NewBlogPost show={show} onClose={() => setShow(!show)} />
+        <NewBlogPost userId={client} show={show} onClose={() => setShow(!show)} setPosts={setPosts}/>
       </div>
     );
   } else {

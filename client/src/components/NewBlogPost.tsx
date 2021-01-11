@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useImperativeHandle, useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 const BackDropStyle = styled.div`
   font-family: TruliaSans, Roboto, "Segoe UI Bold", Arial, sans-serif;
@@ -34,14 +35,32 @@ const ModalStyle = styled.div`
 
 interface NewBlogPostProps {
   show: boolean;
+  setPosts: Function;
   onClose: () => void;
+  userId : {
+    id: string;
+  } | undefined;
 };
 
 const NewBlogPost: React.FC<NewBlogPostProps> = (props) => {
+  const [title, setTitle] = useState('');
+  const [post, setPost] = useState('');
+
+  const handleSubmit = (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
+    axios.post('/blog', {
+      title,
+      post,
+      username_id: props.userId!.id
+    })
+    .then(() => axios.get('/blog')
+    .then((result) => props.setPosts(result.data))
+    .catch(error => console.log(error)))
+  }
+
   if (!props.show) {
     return null;
   }
-
 
   return (
     <BackDropStyle onClick={props.onClose}>
@@ -50,9 +69,14 @@ const NewBlogPost: React.FC<NewBlogPostProps> = (props) => {
           e.stopPropagation();
         }}
       >
-        <form>
+        <form onSubmit={handleSubmit}>
           <label>
-            <input type="text" name="name" />
+            Title:
+            <input type="text" value={title} name="title" onChange={e => setTitle(e.target.value)}/>
+          </label>
+          <label>
+            Post:
+            <input type="text" value={post} name="post" onChange={e => setPost(e.target.value)}/>
           </label>
           <input type="submit" value="Submit" />
         </form>

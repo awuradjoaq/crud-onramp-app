@@ -43,13 +43,22 @@ const NewBlogPost: React.FC<NewBlogPostProps> = (props) => {
   }
 
 
-  return(
+  return (
     <BackDropStyle onClick={props.onClose}>
-        <ModalStyle onClick={(e) => {e.stopPropagation()}}>
-        </ModalStyle>
+      <ModalStyle
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
+        <form>
+          <label>
+            <input type="text" name="name" />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
+      </ModalStyle>
     </BackDropStyle>
-
-  )
+  );
 };
 
 export default NewBlogPost;

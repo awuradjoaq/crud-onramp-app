@@ -12,7 +12,7 @@ interface MainPageProps {
   }[];
   setPosts?: Function;
   userId?: {
-    id: number
+    id: string;
   };
 }
 

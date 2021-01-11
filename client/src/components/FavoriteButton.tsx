@@ -1,17 +1,33 @@
 import React from 'react';
 import Favorites from './Favorites';
+import axios from 'axios';
+
 interface FavoriteButtonProps {
   userId: {
-    id: number
+    id: string;
   } | null;
+  id : number;
+  saved?: boolean;
 }
 
 const FavoriteButton: React.FC<FavoriteButtonProps> = (props) => {
-  const addFavorite = () => {
 
+  const addFavorite = () => {
+    axios.post(`/blog/favorites/${props.userId!.id}`, {
+      blog_post_id: props.id
+    })
+    .then(result => console.log(result))
+    .catch(error => console.log(error))
   }
+
+  const deleteFavorite = () => {
+    axios.delete(`/blog/favorites/${props.userId!.id}`)
+    .then(result => console.log(result))
+    .catch(error => console.log(error))
+  }
+
   return(
-    <i className="far fa-heart"></i>
+    <i className="far fa-heart" onClick={props.saved ?deleteFavorite : addFavorite}></i>
   )
 };
 

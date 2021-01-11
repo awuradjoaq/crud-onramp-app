@@ -13,7 +13,7 @@ interface BlogPostProps {
   };
   setPosts?: Function;
   userId?: {
-    id: number
+    id: string;
   };
 }
 
@@ -21,7 +21,7 @@ const PostDisplay: React.FC<BlogPostProps> = (props) => {
   return (
     <div>
       <DeleteBlogPost id={props.post.id} setPosts={props.setPosts} />
-      <FavoriteButton userId={props.userId ?? null}/>
+      <FavoriteButton userId={props.userId ?? null} id={props.post.id}/>
       <Link to={`/${props.post.id}`}>
         <h2>{props.post.title}</h2>
       </Link>

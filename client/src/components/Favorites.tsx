@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import MainPage from './MainPage';
 import { RouteComponentProps } from 'react-router-dom';
+import FavoritesPage from './FavoritesPage';
 
 const Favorites: React.FC<RouteComponentProps<{id:string}>> = (props) => {
 
@@ -14,7 +14,7 @@ const Favorites: React.FC<RouteComponentProps<{id:string}>> = (props) => {
   }, []);
 
   if (favorites) {
-    return <MainPage posts={favorites} />
+    return <FavoritesPage posts={favorites} userId={props.match.params}/>
   } else {
     return null;
   }

@@ -15,14 +15,18 @@ const UpdateBlog: React.FC<UpdateBlogProps> = (props) => {
 
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    axios.patch(`/blog/${props.id}`, {
-      title,
-      post,
-    })
-    .then(() => axios.get('/blog')
-    .then(result => props.setPosts(result.data))
-    .catch(error => console.log(error)))
-    .catch(error => console.log(error))
+    if (post === '' || title === '') {
+      alert('Cannot submit blank fields, please try again!')
+    } else {
+      axios.patch(`/blog/${props.id}`, {
+        title,
+        post,
+      })
+      .then(() => axios.get('/blog')
+      .then(result => props.setPosts(result.data))
+      .catch(error => console.log(error)))
+      .catch(error => console.log(error))
+    }
   }
   return(
     <form onSubmit={handleSubmit}>

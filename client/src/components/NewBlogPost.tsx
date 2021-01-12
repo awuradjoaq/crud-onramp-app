@@ -48,14 +48,18 @@ const NewBlogPost: React.FC<NewBlogPostProps> = (props) => {
 
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    axios.post('/blog', {
-      title,
-      post,
-      username_id: props.userId!.id
-    })
-    .then(() => axios.get('/blog')
-    .then((result) => props.setPosts(result.data))
-    .catch(error => console.log(error)))
+    if (title === '' || post === '') {
+      alert('Cannot submit blank fields, please try again!')
+    } else {
+      axios.post('/blog', {
+        title,
+        post,
+        username_id: props.userId!.id
+      })
+      .then(() => axios.get('/blog')
+      .then((result) => props.setPosts(result.data))
+      .catch(error => console.log(error)))
+    }
   }
 
   if (!props.show) {

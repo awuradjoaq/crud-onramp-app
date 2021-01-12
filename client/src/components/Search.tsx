@@ -19,15 +19,19 @@ const Search: React.FC<SearchPageProps> = (props) => {
 
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    let filteredPosts: Object[] = [];
-    for (let post of props.posts) {
-      if (typeof post[field] === 'string') {
-        if (post[field] === value) {
-          filteredPosts.push(post);
+    if (value === '') {
+      alert('Cannot submit blank fields, please try again!')
+    } else {
+      let filteredPosts: Object[] = [];
+      for (let post of props.posts) {
+        if (typeof post[field] === 'string') {
+          if (post[field] === value) {
+            filteredPosts.push(post);
+          }
         }
       }
+      props.setPosts!(filteredPosts);
     }
-    props.setPosts!(filteredPosts);
   }
 
   return (

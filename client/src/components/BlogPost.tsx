@@ -22,9 +22,9 @@ interface BlogPostProps {
 
 // Styled Components
 const BlogPostContainer = styled.div`
-  border-bottom: 1px solid grey;
+  border: 3px solid black;
   width: 80%;
-  margin: 0 auto;
+  margin: 10px auto;
   padding: 20px 0px;
 
 `;
@@ -37,6 +37,7 @@ const StyledLink = styled(Link)`
 const Title = styled.h1`
   display: inline;
   margin-right: 10px;
+  font-size: 40px;
 `;
 
 const ArrowIcon = styled.i`
@@ -47,12 +48,17 @@ const BlogDisplayContainer = styled.div`
   width: 80%;
   margin: 0 auto;
 `;
+const BlogPost = styled.article`
+  text-align: center;
+`
 
 
 const PostDisplay: React.FC<BlogPostProps> = (props) => {
   let postTemplate = (element: any) => {
     return (
       <BlogPostContainer>
+        <BlogPost>
+
         <StyledLink to={`/${props.post.id}`}>
           <Title>{props.post.title}</Title>
           <i className="fas fa-angle-double-right"></i>
@@ -61,6 +67,7 @@ const PostDisplay: React.FC<BlogPostProps> = (props) => {
         {element}
         <h3>{props.post.username}</h3>
         <h4>{(props.post.date_created).slice(0,10)}</h4>
+        </BlogPost>
       </BlogPostContainer>
     );
   };

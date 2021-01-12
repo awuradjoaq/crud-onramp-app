@@ -1,8 +1,25 @@
-import { RequestHandler } from 'express';
+import { RequestHandler } from "express";
 
-import { postMessages, getMessages, getMessage, deleteMessages, updateMessages, getFavoriteMessages, postUser, getUser, postFavorites, deleteFavorited } from '../models/database';
+import {
+  postMessages,
+  getMessages,
+  getMessage,
+  deleteMessages,
+  updateMessages,
+  getFavoriteMessages,
+  postUser,
+  getUser,
+  postFavorites,
+  deleteFavorited,
+  verifyUser,
+} from "../models/database";
 
-interface CreateMessage {title: string, post: string, username_id: number, date_created: string}
+interface CreateMessage {
+  title: string;
+  post: string;
+  username_id: number;
+  auth_id: string;
+}
 
 interface UpdateMessage {
   title: string;
@@ -23,8 +40,33 @@ interface RemoveFavorites {
 }
 
 export const createMessage: RequestHandler = (req, res, next) => {
+  const {username_id} = req.body;
+  const numId = +username_id;
+  const {auth_id} = req.body;
   const params: CreateMessage = req.body;
-  postMessages(params, (err, result) => {
+  verifyUser(numId, (err, result) => {
+    if (err) {
+      res.status(400).send(err)
+    } else {
+      let authToken = result.rows[0].auth_id;
+      if (auth_id === authToken) {
+        postMessages(params, (err, result) => {
+          if (err) {
+            res.status(400).send(err);
+          } else {
+            res.status(201).send();
+          }
+        });
+      } else {
+        res.status(400).send()
+      }
+    }
+  })
+};
+
+export const createUser: RequestHandler = (req, res, next) => {
+  const params: PostUser = req.body;
+  postUser(params, (err, result) => {
     if (err) {
       res.status(400).send(err);
     } else {
@@ -33,41 +75,29 @@ export const createMessage: RequestHandler = (req, res, next) => {
   });
 };
 
-export const createUser: RequestHandler = (req, res, next) => {
-  const params: PostUser = req.body;
-  postUser(params, (err, result) => {
-    if (err) {
-      res.status(400).send(err)
-    } else {
-      res.status(201).send()
-    }
-  })
-}
-
 export const createFavorite: RequestHandler = (req, res, next) => {
-
   const params: PostFavorites = req.body;
-  const {userId} = req.params;
+  const { userId } = req.params;
   const numId = +userId;
   postFavorites(numId, params, (err, result) => {
     if (err) {
-      res.status(400).send(err)
+      res.status(400).send(err);
     } else {
-      res.status(201).send()
+      res.status(201).send();
     }
-  })
-}
+  });
+};
 
 export const retrieveUser: RequestHandler = (req, res, next) => {
-  const {authId} = req.params;
+  const { authId } = req.params;
   getUser(authId, (err, result) => {
     if (err) {
       res.status(400).send(err);
     } else {
       res.status(200).send(result.rows);
     }
-  })
-}
+  });
+};
 
 export const retrieveMessages: RequestHandler = (req, res, next) => {
   getMessages((err, result) => {
@@ -76,62 +106,62 @@ export const retrieveMessages: RequestHandler = (req, res, next) => {
 };
 
 export const retrieveMessage: RequestHandler = (req, res, next) => {
-  const {id} = req.params;
+  const { id } = req.params;
   const numId = +id;
   getMessage(numId, (err, result) => {
     if (err) {
       res.status(400).send(err);
     } else {
-      res.status(200).send(result.rows)
+      res.status(200).send(result.rows);
     }
-  })
-}
+  });
+};
 
 export const retrieveFavoriteMessages: RequestHandler = (req, res, next) => {
-  const {userId} = req.params;
+  const { userId } = req.params;
   const numId = +userId;
   getFavoriteMessages(numId, (err, result) => {
     if (err) {
       res.status(400).send(err);
     } else {
-      res.status(200).send(result.rows)
+      res.status(200).send(result.rows);
     }
-  })
-}
+  });
+};
 
 export const removeMessages: RequestHandler = (req, res, next) => {
-  const {id} = req.params;
+  const { id } = req.params;
   const numId = +id;
   deleteMessages(numId, (err, result) => {
     if (err) {
       res.status(400).send(err);
     } else {
-      res.status(201).send('successfully deleted');
+      res.status(201).send("successfully deleted");
     }
   });
 };
 
 export const removeFavorited: RequestHandler = (req, res, next) => {
   // FIX TYPE
-  const {id} = req.body;
-  deleteFavorited(id,(err, result) => {
+  const { id } = req.body;
+  deleteFavorited(id, (err, result) => {
     if (err) {
-      res.status(400).send(err)
+      res.status(400).send(err);
     } else {
-      res.status(204).send()
+      res.status(204).send();
     }
-  })
-}
+  });
+};
 
 export const updatedMessages: RequestHandler = (req, res, next) => {
   const fields: UpdateMessage = req.body;
-  const {id} = req.params;
+  const { id } = req.params;
   const numId = +id;
   updateMessages(numId, fields, (err, result) => {
     if (err) {
       res.status(400).send(err);
     } else {
-      res.status(204).send('successfully updated');
+      res.status(204).send("successfully updated");
     }
-  })
-}
+  });
+};

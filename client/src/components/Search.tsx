@@ -4,7 +4,7 @@ import styled from 'styled-components';
 // Interfaces
 interface SearchPageProps {
   posts: {
-    [key: string]: string | number
+    [key: string]: any;
   }[];
   setPosts?: Function;
 }
@@ -25,7 +25,7 @@ const Search: React.FC<SearchPageProps> = (props) => {
       let filteredPosts: Object[] = [];
       for (let post of props.posts) {
         if (typeof post[field] === 'string') {
-          if (post[field] === value) {
+          if (post[field].includes(value)) {
             filteredPosts.push(post);
           }
         }

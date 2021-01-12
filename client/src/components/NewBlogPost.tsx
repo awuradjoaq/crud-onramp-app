@@ -39,6 +39,7 @@ interface NewBlogPostProps {
   onClose: () => void;
   userId : {
     id: string;
+    auth_id: string;
   } | undefined;
 };
 
@@ -54,7 +55,8 @@ const NewBlogPost: React.FC<NewBlogPostProps> = (props) => {
       axios.post('/blog', {
         title,
         post,
-        username_id: props.userId!.id
+        username_id: props.userId!.id,
+        auth_id: props.userId!.auth_id
       })
       .then(() => axios.get('/blog')
       .then((result) => props.setPosts(result.data))

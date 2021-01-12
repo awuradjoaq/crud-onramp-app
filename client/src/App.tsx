@@ -15,6 +15,7 @@ import FavoriteButton from "./components/FavoriteButton";
 // Interface
 interface ClientState {
   id: string;
+  auth_id: string;
 }
 
 //Styled Components
@@ -54,6 +55,11 @@ const ButtonStyle = styled.button`
   cursor:pointer;
   overflow: hidden;
 
+`;
+
+const RoutesContainer = styled.div`
+  width: 100%;
+  height: 100%;
 `;
 
 const App: React.FC = (props) => {
@@ -99,12 +105,11 @@ const App: React.FC = (props) => {
     return (
       <AppContainer>
         <NavContainer>
-
         <NavStyled>
         <NavItems><LogOutPage /></NavItems>
         <NavItems><ButtonStyle onClick={() => setShow(!show)}>Create New Blog Post</ButtonStyle></NavItems>
         <BrowserRouter>
-          <div className="App">
+          <RoutesContainer>
             <NavItems><HomeButton setPosts={setPosts} posts={posts}/></NavItems>
             <NavItems><Link to={`/favorites/${client!.id}`}>
               <ButtonStyle>Favorited Blogs</ButtonStyle>
@@ -118,7 +123,7 @@ const App: React.FC = (props) => {
               <Route path="/favorites/:id" exact component={Favorites} />
               <Route path="/:id" render={(props) => <PostDisplay {...props} setPosts={setPosts} userId={client}/>} />
             </Switch>
-          </div>
+          </RoutesContainer>
         </BrowserRouter>
         </NavStyled>
         </NavContainer>

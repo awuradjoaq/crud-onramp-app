@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
-import FavoriteButton from './FavoriteButton';
-import { Link }  from 'react-router-dom';
+import React, { useState } from "react";
+import FavoriteButton from "./FavoriteButton";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
+// Interfaces
 interface FavoritesPostProps {
   post: {
     id: number;
@@ -17,18 +19,47 @@ interface FavoritesPostProps {
   };
 }
 
+// Styled Components
+const BlogPostContainer = styled.div`
+  border: 3px solid black;
+  width: 80%;
+  margin: 10px auto;
+  padding: 20px 0px;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+`;
+
+const Title = styled.h1`
+  display: inline;
+  margin-right: 10px;
+  font-size: 40px;
+`;
+
+const ArrowIcon = styled.i`
+  display: inline;
+`;
+
+const FavoritePost = styled.article`
+  text-align: center;
+`;
+
 const FavoritesPost: React.FC<FavoritesPostProps> = (props) => {
   const [saved, setSaved] = useState(true);
 
-  return(
-    <div>
-      <FavoriteButton userId={props.userId ?? null} id={props.post.blog_post_id} saved={saved}/>
-      <Link to={`/${props.post.blog_post_id}`}>
-        <h2>{props.post.title}</h2>
-      </Link>
-      <h3>{props.post.username}</h3>
-      <h4>{props.post.date_created}</h4>
-    </div>
+  return (
+    <BlogPostContainer>
+      <FavoritePost>
+        <StyledLink to={`/${props.post.blog_post_id}`}>
+          <Title>{props.post.title}</Title>
+          <i className="fas fa-angle-double-right"></i>
+        </StyledLink>
+        <h3>{props.post.username}</h3>
+        <h4>{props.post.date_created.slice(0, 10)}</h4>
+      </FavoritePost>
+    </BlogPostContainer>
   );
 };
 

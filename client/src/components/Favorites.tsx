@@ -2,6 +2,11 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { RouteComponentProps } from 'react-router-dom';
 import FavoritesPage from './FavoritesPage';
+import styled from 'styled-components';
+
+// STyled Components
+const FavoritesPageContainer = styled.div`
+`;
 
 const Favorites: React.FC<RouteComponentProps<{id:string}>> = (props) => {
 
@@ -13,7 +18,11 @@ const Favorites: React.FC<RouteComponentProps<{id:string}>> = (props) => {
   }, []);
 
   if (favorites) {
-    return <FavoritesPage posts={favorites} userId={props.match.params}/>
+    return (
+      <FavoritesPageContainer>
+        <FavoritesPage posts={favorites} userId={props.match.params}/>
+      </FavoritesPageContainer>
+    )
   } else {
     return null;
   }

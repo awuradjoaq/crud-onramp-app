@@ -1,5 +1,6 @@
-import React from 'react';
-import FavoritesPost from './FavoritesPost';
+import React from "react";
+import styled from "styled-components";
+import FavoritesPost from "./FavoritesPost";
 
 interface FavoritesPageProps {
   posts: {
@@ -16,17 +17,29 @@ interface FavoritesPageProps {
   };
 }
 
-const FavoritesPage: React.FC<FavoritesPageProps> = (props) => {
-  return(
-    <div>
-      {
-        props.posts.map(post => (
-          <FavoritesPost post={post} key={post.id} setPosts={props.setPosts} userId={props.userId}/>
-        ))
-      }
-    </div>
+const FavoritesPageContainer = styled.div`
+  width: 100%;
+  height: 100%;
+`;
 
-  )
+const FavoritesPostsContainer = styled.div`
+`;
+
+const FavoritesPage: React.FC<FavoritesPageProps> = (props) => {
+  return (
+    <FavoritesPageContainer>
+      <FavoritesPostsContainer>
+        {props.posts.map((post) => (
+          <FavoritesPost
+            post={post}
+            key={post.id}
+            setPosts={props.setPosts}
+            userId={props.userId}
+          />
+        ))}
+      </FavoritesPostsContainer>
+    </FavoritesPageContainer>
+  );
 };
 
 export default FavoritesPage;

@@ -26,7 +26,7 @@ const MainPageContainer = styled.div`
 `;
 
 const BlogPostsContainer = styled.div`
-  margin-top: 20px;
+  margin-top: 60px;
 `;
 
 const MainPage: React.FC<MainPageProps> = (props) => {

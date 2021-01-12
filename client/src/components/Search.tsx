@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled from 'styled-components';
+import styled from "styled-components";
 
 // Interfaces
 interface SearchPageProps {
@@ -10,21 +10,37 @@ interface SearchPageProps {
 }
 
 // Styled Components
+const StyledForm = styled.form`
+  border-radius: 5px;
+`;
 
+const StyledSelect = styled.select`
+  font-size: 20px;
+  font-family: "Amatic SC", cursive;
+`;
+
+const StyledInput = styled.input`
+  font-size: 20px;
+`;
+
+const StyledButton = styled.button`
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+`;
 
 const Search: React.FC<SearchPageProps> = (props) => {
+  const [value, setValue] = useState("");
+  const [field, setField] = useState("username");
 
-  const [value, setValue] = useState('');
-  const [field, setField] = useState('username');
-
-  const handleSubmit = (e: { preventDefault: () => void; }) => {
+  const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    if (value === '') {
-      alert('Cannot submit blank fields, please try again!')
+    if (value === "") {
+      alert("Cannot submit blank fields, please try again!");
     } else {
       let filteredPosts: Object[] = [];
       for (let post of props.posts) {
-        if (typeof post[field] === 'string') {
+        if (typeof post[field] === "string") {
           if (post[field].includes(value)) {
             filteredPosts.push(post);
           }
@@ -32,17 +48,23 @@ const Search: React.FC<SearchPageProps> = (props) => {
       }
       props.setPosts!(filteredPosts);
     }
-  }
+  };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <select value={field} onChange={e => setField(e.target.value)}>
+    <StyledForm onSubmit={handleSubmit}>
+      <StyledSelect value={field} onChange={(e) => setField(e.target.value)}>
         <option value="username">Username</option>
         <option value="title">Title</option>
-      </select>
-      <input type="text" value={value} onChange={e => setValue(e.target.value)}></input>
-      <input type="submit" value="search" />
-    </form>
+      </StyledSelect>
+      <StyledInput
+        type="text"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      ></StyledInput>
+      <StyledButton type="submit">
+        <i className="fas fa-search"></i>
+      </StyledButton>
+    </StyledForm>
   );
 };
 

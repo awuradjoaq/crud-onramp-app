@@ -3,7 +3,7 @@ import axios from "axios";
 import BlogPost from "./BlogPost";
 import { RouteComponentProps } from "react-router-dom";
 import UpdateBlogPost from "./UpdateBlogPost";
-import styled from 'styled-components';
+import styled from "styled-components";
 
 // Interfaces
 interface BlogPostProps {
@@ -22,10 +22,16 @@ interface BlogPostProps {
 // Styled Components
 const PostDisplayStyle = styled.div`
   position: relative;
-  top: 300px;
-  left: 300px;
-  margin: 0 auto;
+  top: 100px;
+  width: 50%;
+  height: 90%;
+  margin: 20px auto;
 `;
+
+const Title = styled.h1`
+  font-size: 40px;
+`;
+
 // RouteComponentProps<{id:string}>
 // FIX TYPE
 
@@ -41,8 +47,9 @@ const PostDisplay: React.FC<any> = (props) => {
   if (display && props.userId.id === display.username_id) {
     return (
       <PostDisplayStyle>
-        <h1>{display.title}</h1>
+        <Title>{display.title}</Title>
         <h2>{display.username}</h2>
+        <h4>{display.date_created.slice(0, 10)}</h4>
         <p>{display.post}</p>
         <UpdateBlogPost
           title={display.title}
@@ -52,14 +59,16 @@ const PostDisplay: React.FC<any> = (props) => {
           id={display.id}
           setPosts={props.setPosts}
         />
+
       </PostDisplayStyle>
     );
   } else if (display) {
     return (
       <PostDisplayStyle>
-        <h1>{display.title}</h1>
+        <Title>{display.title}</Title>
         <h2>{display.username}</h2>
         <p>{display.post}</p>
+        <h4>{display.date_created.slice(0, 10)}</h4>
       </PostDisplayStyle>
     );
   } else {

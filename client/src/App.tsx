@@ -11,6 +11,7 @@ import LogOutPage from "./components/LogOutPage";
 import { useAuth0 } from "@auth0/auth0-react";
 import styled from 'styled-components';
 import FavoriteButton from "./components/FavoriteButton";
+import Profile from "./components/Profile";
 
 // Interface
 interface ClientState {
@@ -54,7 +55,20 @@ const ButtonStyle = styled.button`
   border: none;
   cursor:pointer;
   overflow: hidden;
-
+  font-family: 'Amatic SC', cursive;
+  font-size: 20px;
+  &:hover {
+    background-color: rgb(0, 120, 130);
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+  }
+  &:active {
+    color: rgb(0, 120, 130);
+    background-color: rgb(224, 247, 248);
+    border-color: rgb(0, 120, 130);
+  }
 `;
 
 const RoutesContainer = styled.div`
@@ -95,18 +109,14 @@ const App: React.FC = (props) => {
 
   }, [isAuthenticated]);
 
-  // const getBlogs = (endpoint:string, stateSetter:any) => {
-  //   axios.get(endpoint)
-  //   .then(result => stateSetter(result.data))
-  //   .catch(error => console.log(error))
-  // }
 
   if (isAuthenticated && client) {
+    let userInfo = JSON.parse(`${JSON.stringify(user, null, 2)}`);
     return (
       <AppContainer>
         <NavContainer>
         <NavStyled>
-        <NavItems><LogOutPage /></NavItems>
+        <NavItems><Profile image={userInfo.picture} nickname={userInfo.nickname}/></NavItems>
         <NavItems><ButtonStyle onClick={() => setShow(!show)}>Create New Blog Post</ButtonStyle></NavItems>
         <BrowserRouter>
           <RoutesContainer>

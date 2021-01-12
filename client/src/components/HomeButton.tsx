@@ -21,6 +21,20 @@ const StyledButton = styled.button`
   border: none;
   cursor:pointer;
   overflow: hidden;
+  font-family: 'Amatic SC', cursive;
+  font-size: 20px;
+  &:hover {
+    background-color: rgb(0, 120, 130);
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+  }
+  &:active {
+    color: rgb(0, 120, 130);
+    background-color: rgb(224, 247, 248);
+    border-color: rgb(0, 120, 130);
+  }
 
 `
 

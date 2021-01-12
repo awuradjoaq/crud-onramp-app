@@ -2,7 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import DeleteBlogPost from "./DeleteBlogPost";
 import FavoriteButton from "./FavoriteButton";
+import styled from 'styled-components';
+import moment from 'moment';
 
+// Interfaces
 interface BlogPostProps {
   post: {
     id: number;
@@ -17,30 +20,77 @@ interface BlogPostProps {
   };
 }
 
+// Styled Components
+const BlogPostContainer = styled.div`
+  border-bottom: 1px solid grey;
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px 0px;
+
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+`;
+
+const Title = styled.h1`
+  display: inline;
+  margin-right: 10px;
+`;
+
+const ArrowIcon = styled.i`
+  display: inline;
+`;
+
+const BlogDisplayContainer = styled.div`
+  width: 80%;
+  margin: 0 auto;
+`;
+
+
 const PostDisplay: React.FC<BlogPostProps> = (props) => {
-  if (+props.userId!.id === props.post.username_id) {
-    
+  let postTemplate = (element: any) => {
     return (
-      <div>
-        <DeleteBlogPost id={props.post.id} setPosts={props.setPosts} />
+      <BlogPostContainer>
+        <StyledLink to={`/${props.post.id}`}>
+          <Title>{props.post.title}</Title>
+          <i className="fas fa-angle-double-right"></i>
+        </StyledLink>
         <FavoriteButton userId={props.userId ?? null} id={props.post.id} />
-        <Link to={`/${props.post.id}`}>
-          <h2>{props.post.title}</h2>
-        </Link>
+        {element}
         <h3>{props.post.username}</h3>
-        <h4>{props.post.date_created}</h4>
-      </div>
+        <h4>{(props.post.date_created).slice(0,10)}</h4>
+      </BlogPostContainer>
+    );
+  };
+
+
+const PostDisplayTemplate = (
+  <BlogPostContainer>
+    <DeleteBlogPost id={props.post.id} setPosts={props.setPosts} />
+    <StyledLink to={`/${props.post.id}`}>
+      <Title>{props.post.title}</Title>
+      <i className="fas fa-angle-double-right"></i>
+    </StyledLink>
+    <FavoriteButton userId={props.userId ?? null} id={props.post.id} />
+    <h3>{props.post.username}</h3>
+    <h4>{(props.post.date_created).slice(0,9)}</h4>
+  </BlogPostContainer>
+);
+
+  if (+props.userId!.id === props.post.username_id) {
+
+    return (
+      <BlogDisplayContainer>
+        {postTemplate(<DeleteBlogPost id={props.post.id} setPosts={props.setPosts} />)}
+      </BlogDisplayContainer>
     );
   } else {
     return (
-      <div>
-        <FavoriteButton userId={props.userId ?? null} id={props.post.id} />
-        <Link to={`/${props.post.id}`}>
-          <h2>{props.post.title}</h2>
-        </Link>
-        <h3>{props.post.username}</h3>
-        <h4>{props.post.date_created}</h4>
-      </div>
+      <BlogDisplayContainer>
+        {postTemplate(null)}
+      </BlogDisplayContainer>
     );
   }
 };

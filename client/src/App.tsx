@@ -9,12 +9,58 @@ import axios from "axios";
 import LogInPage from "./components/LoginPage";
 import LogOutPage from "./components/LogOutPage";
 import { useAuth0 } from "@auth0/auth0-react";
+import styled from 'styled-components';
+import FavoriteButton from "./components/FavoriteButton";
+
+// Interface
+interface ClientState {
+  id: string;
+}
+
+//Styled Components
+const AppContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+
+`
+const NavItems = styled.li`
+  display: inline;
+  float: right;
+  margin: 0px 15px;
+`
+
+const NavStyled = styled.nav`
+  width: 100%;
+  height: 100%;
+  margin: 10px;
+`;
+
+const NavContainer = styled.div`
+  width: 100%;
+  height: 50px;
+  top: 0;
+`;
+
+const UlStyled = styled.ul`
+  width: 100%;
+  height: 100%;
+`;
+
+const ButtonStyle = styled.button`
+  background-color: transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+
+`;
 
 const App: React.FC = (props) => {
 
   const [show, setShow] = useState(false);
   const [posts, setPosts] = useState([]);
-  const [client, setClient] = useState(undefined);
+  const [client, setClient] = useState<ClientState | undefined>(undefined);
 
 
   const { isAuthenticated, user } = useAuth0();
@@ -51,14 +97,18 @@ const App: React.FC = (props) => {
 
   if (isAuthenticated && client) {
     return (
-      <div>
-        <LogOutPage />
+      <AppContainer>
+        <NavContainer>
+
+        <NavStyled>
+        <NavItems><LogOutPage /></NavItems>
+        <NavItems><ButtonStyle onClick={() => setShow(!show)}>Create New Blog Post</ButtonStyle></NavItems>
         <BrowserRouter>
           <div className="App">
-            <HomeButton setPosts={setPosts} posts={posts}/>
-            <Link to={`/favorites/1`}>
-              <button>Favorited Blogs</button>
-            </Link>
+            <NavItems><HomeButton setPosts={setPosts} posts={posts}/></NavItems>
+            <NavItems><Link to={`/favorites/${client!.id}`}>
+              <ButtonStyle>Favorited Blogs</ButtonStyle>
+            </Link></NavItems>
             <Switch>
               <Route
                 path="/"
@@ -70,9 +120,10 @@ const App: React.FC = (props) => {
             </Switch>
           </div>
         </BrowserRouter>
-        <button onClick={() => setShow(!show)}>Create New Blog Post</button>
+        </NavStyled>
+        </NavContainer>
         <NewBlogPost userId={client} show={show} onClose={() => setShow(!show)} setPosts={setPosts}/>
-      </div>
+      </AppContainer>
     );
   } else {
     return <LogInPage />;

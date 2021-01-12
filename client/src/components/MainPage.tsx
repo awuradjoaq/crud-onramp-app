@@ -1,7 +1,9 @@
 import React from 'react';
 import BlogPosts from './BlogPost';
 import Search from './Search';
+import styled from 'styled-components';
 
+// Interfaces
 interface MainPageProps {
   posts: {
     id: number;
@@ -16,17 +18,29 @@ interface MainPageProps {
   };
 }
 
+// Styled Components
+const MainPageContainer = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
+const BlogPostsContainer = styled.div`
+  margin-top: 20px;
+`;
+
 const MainPage: React.FC<MainPageProps> = (props) => {
   return (
-    <div>
+    <MainPageContainer>
       <Search posts={props.posts} setPosts={props.setPosts}/>
+      <BlogPostsContainer>
+
       {
         props.posts.map(post => (
-        <BlogPosts post={post} key={post.id} setPosts={props.setPosts} userId={props.userId}/>
-      ))
-    }
-    </div>
-
+          <BlogPosts post={post} key={post.id} setPosts={props.setPosts} userId={props.userId}/>
+          ))
+        }
+      </BlogPostsContainer>
+    </MainPageContainer>
   )
 
 };

@@ -1,7 +1,9 @@
 import React from 'react';
 import Favorites from './Favorites';
 import axios from 'axios';
+import styled from 'styled-components';
 
+// Interfaces
 interface FavoriteButtonProps {
   userId: {
     id: string;
@@ -9,6 +11,11 @@ interface FavoriteButtonProps {
   id : number;
   saved?: boolean;
 }
+
+// Styled Components
+const HeartButton = styled.i`
+  margin: 0px 30px;
+`
 
 const FavoriteButton: React.FC<FavoriteButtonProps> = (props) => {
 
@@ -21,7 +28,7 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = (props) => {
   }
 
   return(
-    <i className="far fa-heart" onClick={addFavorite}></i>
+    <HeartButton className="far fa-heart" onClick={addFavorite}></HeartButton>
   )
 };
 

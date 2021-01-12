@@ -1,10 +1,19 @@
 import React from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 
+// Interface
 interface DeleteBlogProps {
   id: number;
   setPosts?: Function;
 }
+
+// Styled Components
+const DeleteButton = styled.i`
+  position: relative;
+  right: 10px;
+  bottom: 1px;
+`
 
 const DeleteBlogPost: React.FC<DeleteBlogProps> = (props) => {
 
@@ -17,9 +26,7 @@ const DeleteBlogPost: React.FC<DeleteBlogProps> = (props) => {
 
 }
   return(
-    <div onClick={removeBlogPost}>
-      X
-    </div>
+    <DeleteButton onClick={removeBlogPost} className="far fa-trash-alt"></DeleteButton>
   )
 };
 

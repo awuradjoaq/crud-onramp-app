@@ -15,6 +15,7 @@ interface MainPageProps {
   setPosts?: Function;
   userId?: {
     id: string;
+    auth_id: string;
   };
 }
 

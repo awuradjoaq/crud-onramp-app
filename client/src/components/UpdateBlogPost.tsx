@@ -7,6 +7,7 @@ interface UpdateBlogPostProps {
   username_id: number;
   id: number;
   setPosts: Function;
+  auth_id: string;
 }
 
 const UpdateBlogPost: React.FC<UpdateBlogPostProps> = (props) => {
@@ -17,7 +18,7 @@ const UpdateBlogPost: React.FC<UpdateBlogPostProps> = (props) => {
         <button onClick={() => setUpdate(!update)}>
           Quit Editing
         </button>
-        <UpdateBlog title={props.title} post={props.post} username_id={props.username_id} id={props.id} setPosts={props.setPosts}/>
+        <UpdateBlog title={props.title} post={props.post} username_id={props.username_id} id={props.id} setPosts={props.setPosts} auth_id={props.auth_id}/>
       </>
     )
   }

@@ -6,6 +6,10 @@ import styled from 'styled-components';
 interface DeleteBlogProps {
   id: number;
   setPosts?: Function;
+  userId?: {
+    id: string;
+    auth_id: string;
+  }
 }
 
 // Styled Components
@@ -16,9 +20,11 @@ const DeleteButton = styled.i`
 `
 
 const DeleteBlogPost: React.FC<DeleteBlogProps> = (props) => {
-
   const removeBlogPost  = () => {
-    axios.delete(`/blog/${props.id}`)
+    axios.delete(`/blog/${props.id}`, {data: {
+      username_id: props.userId?.id,
+      auth_id: props.userId?.auth_id
+    }})
     .then(() => axios.get('/blog/')
     .then(result => props.setPosts? props.setPosts(result.data) : null)
     .catch(error => console.log(error)))

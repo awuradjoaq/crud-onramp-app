@@ -17,6 +17,7 @@ interface BlogPostProps {
   setPosts?: Function;
   userId?: {
     id: string;
+    auth_id: string;
   };
 }
 
@@ -72,25 +73,11 @@ const PostDisplay: React.FC<BlogPostProps> = (props) => {
     );
   };
 
-
-const PostDisplayTemplate = (
-  <BlogPostContainer>
-    <DeleteBlogPost id={props.post.id} setPosts={props.setPosts} />
-    <StyledLink to={`/${props.post.id}`}>
-      <Title>{props.post.title}</Title>
-      <i className="fas fa-angle-double-right"></i>
-    </StyledLink>
-    <FavoriteButton userId={props.userId ?? null} id={props.post.id} />
-    <h3>{props.post.username}</h3>
-    <h4>{(props.post.date_created).slice(0,9)}</h4>
-  </BlogPostContainer>
-);
-
   if (+props.userId!.id === props.post.username_id) {
 
     return (
       <BlogDisplayContainer>
-        {postTemplate(<DeleteBlogPost id={props.post.id} setPosts={props.setPosts} />)}
+        {postTemplate(<DeleteBlogPost id={props.post.id} setPosts={props.setPosts} userId={props.userId}/>)}
       </BlogDisplayContainer>
     );
   } else {

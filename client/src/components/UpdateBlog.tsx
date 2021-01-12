@@ -7,6 +7,7 @@ interface UpdateBlogProps {
   username_id: number;
   id: number;
   setPosts: Function;
+  auth_id: string;
 }
 
 const UpdateBlog: React.FC<UpdateBlogProps> = (props) => {
@@ -21,6 +22,9 @@ const UpdateBlog: React.FC<UpdateBlogProps> = (props) => {
       axios.patch(`/blog/${props.id}`, {
         title,
         post,
+        username_id: props.username_id,
+        auth_id: props.auth_id
+
       })
       .then(() => axios.get('/blog')
       .then(result => props.setPosts(result.data))

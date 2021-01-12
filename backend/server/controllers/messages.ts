@@ -24,6 +24,8 @@ interface CreateMessage {
 interface UpdateMessage {
   title: string;
   post: string;
+  username_id: number;
+  auth_id: string;
 }
 
 interface PostUser {
@@ -41,10 +43,9 @@ interface RemoveFavorites {
 
 export const createMessage: RequestHandler = (req, res, next) => {
   const {username_id} = req.body;
-  const numId = +username_id;
   const {auth_id} = req.body;
   const params: CreateMessage = req.body;
-  verifyUser(numId, (err, result) => {
+  verifyUser(username_id, (err, result) => {
     if (err) {
       res.status(400).send(err)
     } else {
@@ -130,15 +131,28 @@ export const retrieveFavoriteMessages: RequestHandler = (req, res, next) => {
 };
 
 export const removeMessages: RequestHandler = (req, res, next) => {
-  const { id } = req.params;
-  const numId = +id;
-  deleteMessages(numId, (err, result) => {
+  const {username_id, auth_id} = req.body;
+  verifyUser(username_id, (err, result) => {
     if (err) {
-      res.status(400).send(err);
+      res.status(400).send()
     } else {
-      res.status(201).send("successfully deleted");
+      let authToken = result.rows[0].auth_id;
+      if (authToken === auth_id) {
+
+        const { id } = req.params;
+        const numId = +id;
+        deleteMessages(numId, (err, result) => {
+          if (err) {
+            res.status(400).send(err);
+          } else {
+            res.status(201).send("successfully deleted");
+          }
+        });
+      } else {
+        res.status(400).send()
+      }
     }
-  });
+  })
 };
 
 export const removeFavorited: RequestHandler = (req, res, next) => {
@@ -155,13 +169,26 @@ export const removeFavorited: RequestHandler = (req, res, next) => {
 
 export const updatedMessages: RequestHandler = (req, res, next) => {
   const fields: UpdateMessage = req.body;
+  const {username_id} = req.body;
+  const {auth_id} = req.body;
   const { id } = req.params;
   const numId = +id;
-  updateMessages(numId, fields, (err, result) => {
+  verifyUser(username_id, (err, result) => {
     if (err) {
-      res.status(400).send(err);
+      res.status(400).send()
     } else {
-      res.status(204).send("successfully updated");
+      let authToken = result.rows[0].auth_id;
+      if (authToken === auth_id) {
+        updateMessages(numId, fields, (err, result) => {
+          if (err) {
+            res.status(400).send(err);
+          } else {
+            res.status(204).send("successfully updated");
+          }
+        });
+      } else {
+        res.status(400).send()
+      }
     }
-  });
+  })
 };

@@ -15,6 +15,7 @@ interface BlogPostProps {
   post: string;
   userId: {
     id: number;
+    auth_id: string;
   };
 }
 
@@ -47,6 +48,7 @@ const PostDisplay: React.FC<any> = (props) => {
           title={display.title}
           post={display.post}
           username_id={display.username_id}
+          auth_id={props.userId.auth_id}
           id={display.id}
           setPosts={props.setPosts}
         />

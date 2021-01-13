@@ -26,6 +26,7 @@ const BlogPostContainer = styled.div`
   width: 80%;
   margin: 10px auto;
   padding: 20px 0px;
+  font-size: 30px;
 `;
 
 const StyledLink = styled(Link)`

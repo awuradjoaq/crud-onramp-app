@@ -43,19 +43,22 @@ Parameterized Queries for PostGreSQL
 
 ## Screenshots
 Log In Page
-![Alt text](https://imgur.com/IW8WWDw "Log In Page")
+![Alt text](https://i.imgur.com/IW8WWDw.png "Log In Page")
 
 All Blog Posts Page
-![Alt text](https://imgur.com/I8hskKo "All Blog Posts Page")
+![Alt text](https://i.imgur.com/I8hskKo.png "All Blog Posts Page")
 
 New Blog Posts Modal
-![Alt text](https://imgur.com/0XBdtXF "New Blog Posts Modal")
+![Alt text](https://i.imgur.com/0XBdtXF.png "New Blog Posts Modal")
 
 Favorites Page
 ![Alt text](https://i.imgur.com/tyPmcZH.png "Favorites Page")
 
 Single Blog Post Page
-![Alt text](hhttps://imgur.com/tyPmcZH "Single Blog Post Page")
+![Alt text](https://i.imgur.com/9wYlD0L.png "Single Blog Post Page")
+
+Search Blog Post Page
+![Alt text](hhttps://i.imgur.com/tyPmcZH.png "Search Blog Post Page")
 
 
 

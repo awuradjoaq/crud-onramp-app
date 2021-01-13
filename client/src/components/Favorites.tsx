@@ -5,7 +5,9 @@ import FavoritesPage from "./FavoritesPage";
 import styled from "styled-components";
 
 // Styled Components
-const FavoritesPageContainer = styled.div``;
+const FavoritesPageContainer = styled.div`
+  font-size: 30px;
+`;
 
 const Favorites: React.FC<RouteComponentProps<{ id: string }>> = (props) => {
   const [favorites, setFavorites] = useState([]);
@@ -21,6 +23,7 @@ const Favorites: React.FC<RouteComponentProps<{ id: string }>> = (props) => {
   if (favorites) {
     return (
       <FavoritesPageContainer>
+        Favorites
         <FavoritesPage posts={favorites} userId={props.match.params} />
       </FavoritesPageContainer>
     );

@@ -1,3 +1,7 @@
+# Project Startup
+cd client npm start
+cd backend npm start, tsc -w
+
 # Project Title
 
 Blog It Up! A CRUD App with a simple UI!

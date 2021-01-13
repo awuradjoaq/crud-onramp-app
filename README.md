@@ -52,7 +52,7 @@ New Blog Posts Modal
 ![Alt text](https://imgur.com/0XBdtXF "New Blog Posts Modal")
 
 Favorites Page
-![Alt text](https://imgur.com/IvnaxrJ "Favorites Page")
+![Alt text](https://i.imgur.com/tyPmcZH.png "Favorites Page")
 
 Single Blog Post Page
 ![Alt text](hhttps://imgur.com/tyPmcZH "Single Blog Post Page")

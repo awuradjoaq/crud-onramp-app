@@ -26,11 +26,11 @@ Blog It Up! A CRUD App with a simple UI!
 
 Model View Controller:
 
-- Model: Database Layer, Utilized PostGreSQL
+- Model (Data): Database Layer, Utilized PostGreSQL
 
-- View: Front End, Utilized React with TypeScript
+- View (Interface to View and Modify Data): Front End, Utilized React with TypeScript
 
-- Controller: Created functions in backend/server/contollers/messages, which invokes the database queries depending on route called (POST, GET, PATCH, DELETE)
+- Controller (Various actions that can be performed on data): Created functions in backend/server/contollers/messages, which invokes the database queries depending on route called (POST, GET, PATCH, DELETE)
 
 # Best Practices Implemented
 - Commented code where necessary to give high level overview to components/modules

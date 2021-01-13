@@ -42,13 +42,16 @@ interface RemoveFavorites {
 }
 
 export const createMessage: RequestHandler = (req, res, next) => {
+  console.log(req.body);
   const {username_id} = req.body;
   const {auth_id} = req.body;
+
   const params: CreateMessage = req.body;
   verifyUser(username_id, (err, result) => {
     if (err) {
       res.status(400).send(err)
     } else {
+      console.log(result)
       let authToken = result.rows[0].auth_id;
       if (auth_id === authToken) {
         postMessages(params, (err, result) => {

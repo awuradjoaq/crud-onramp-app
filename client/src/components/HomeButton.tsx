@@ -37,6 +37,7 @@ const StyledButton = styled.button`
   }
 `;
 
+// calls back to database to retrieve all blog posts to update feed
 const HomeButton: React.FC<HomeButtonProps> = (props) => {
   const retrievePosts = () => {
     axios

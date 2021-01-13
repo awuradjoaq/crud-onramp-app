@@ -9,6 +9,8 @@ const FavoritesPageContainer = styled.div``;
 
 const Favorites: React.FC<RouteComponentProps<{ id: string }>> = (props) => {
   const [favorites, setFavorites] = useState([]);
+
+  // retrieve users favorites from database
   useEffect(() => {
     axios
       .get(`/blog/favorites/${props.match.params.id}`)

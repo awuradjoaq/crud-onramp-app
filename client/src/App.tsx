@@ -76,7 +76,7 @@ const App: React.FC = (props) => {
   const { isAuthenticated, user, isLoading } = useAuth0();
 
   useEffect(() => {
-    console.log("App useEffect ran!");
+    // axios call to post/ retrieve user info based on user properties provided by auth0
     if (isAuthenticated) {
       let test = JSON.parse(`${JSON.stringify(user, null, 2)}`);
       axios
@@ -106,6 +106,7 @@ const App: React.FC = (props) => {
   if (isLoading) {
     return <div>'Logging In...'</div>;
   }
+  // check to see if user is authenticated before loading page
   if (isAuthenticated && client) {
     let userInfo = JSON.parse(`${JSON.stringify(user, null, 2)}`);
     return (
@@ -167,6 +168,7 @@ const App: React.FC = (props) => {
       </AppContainer>
     );
   } else {
+    // render log is page if user not authenticated
     return <LogInPage />;
   }
 };

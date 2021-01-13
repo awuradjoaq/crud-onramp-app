@@ -29,6 +29,7 @@ const StyledButton = styled.button`
   font-size: 20px;
 `;
 
+// allows users to search by username or title
 const Search: React.FC<SearchPageProps> = (props) => {
   const [value, setValue] = useState("");
   const [field, setField] = useState("username");

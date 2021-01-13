@@ -34,9 +34,10 @@ const Paragraph = styled.p`
   font-size: 25px;
 `;
 
+// displays body of post whose title was clicked on
 const PostDisplay: React.FC<any> = (props) => {
   const [display, setDisplay] = useState<BlogPostProps | null>(null);
-
+  // calls back to API to retrieve body of post
   useEffect(() => {
     axios
       .get(`/blog/${props.match.params.id}`)

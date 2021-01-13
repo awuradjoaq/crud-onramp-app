@@ -24,6 +24,7 @@ const FavoritesPageContainer = styled.div`
 
 const FavoritesPostsContainer = styled.div``;
 
+// returns users favorites page
 const FavoritesPage: React.FC<FavoritesPageProps> = (props) => {
   return (
     <FavoritesPageContainer>

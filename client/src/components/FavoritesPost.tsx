@@ -43,6 +43,7 @@ const FavoritePost = styled.article`
   text-align: center;
 `;
 
+// returns individual favorited posts
 const FavoritesPost: React.FC<FavoritesPostProps> = (props) => {
   return (
     <BlogPostContainer>

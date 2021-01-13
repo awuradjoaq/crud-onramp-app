@@ -35,6 +35,7 @@ const UpdateButton = styled.button`
   }
 `;
 
+// allows for Update Blog post text box to appear
 const UpdateBlogPost: React.FC<UpdateBlogPostProps> = (props) => {
   const [update, setUpdate] = useState(false);
   if (update) {

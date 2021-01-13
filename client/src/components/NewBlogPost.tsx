@@ -120,6 +120,7 @@ interface NewBlogPostProps {
     | undefined;
 }
 
+// modal to create/submit new blog post
 const NewBlogPost: React.FC<NewBlogPostProps> = (props) => {
   const [title, setTitle] = useState("");
   const [post, setPost] = useState("");

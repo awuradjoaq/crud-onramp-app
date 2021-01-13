@@ -29,6 +29,7 @@ const BlogPostsContainer = styled.div`
   margin-top: 60px;
 `;
 
+// renders all blog posts
 const MainPage: React.FC<MainPageProps> = (props) => {
   return (
     <MainPageContainer>

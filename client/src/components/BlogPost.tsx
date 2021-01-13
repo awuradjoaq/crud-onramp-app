@@ -49,6 +49,7 @@ const BlogPost = styled.article`
 `;
 
 const BlogPosts: React.FC<BlogPostProps> = (props) => {
+  // function creating template which gives user delete permission depending on user permissions
   let postTemplate = (element: any) => {
     return (
       <BlogPostContainer>
@@ -66,6 +67,7 @@ const BlogPosts: React.FC<BlogPostProps> = (props) => {
     );
   };
 
+  // if user id is same as post user id, give user permissions to delete
   if (+props.userId!.id === props.post.username_id) {
     return (
       <BlogDisplayContainer>

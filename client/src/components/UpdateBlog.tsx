@@ -58,6 +58,7 @@ const ButtonStyle = styled.input`
   }
 `;
 
+// allows for updates to blog posts created by current user signed in
 const UpdateBlog: React.FC<UpdateBlogProps> = (props) => {
   const [title, setTitle] = useState(props.title);
   const [post, setPost] = useState(props.post);

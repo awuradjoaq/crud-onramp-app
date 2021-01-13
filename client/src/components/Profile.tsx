@@ -22,6 +22,7 @@ const StyledSpan = styled.span`
   bottom: 5px;
 `;
 
+// user profile
 const Profile: React.FC<ProfileProps> = (props) => {
   const [open, setOpen] = useState(false);
   if (open) {

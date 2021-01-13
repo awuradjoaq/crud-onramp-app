@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import UpdateBlog from './UpdateBlog';
+import React, { useState } from "react";
+import styled from "styled-components";
+import UpdateBlog from "./UpdateBlog";
 
 interface UpdateBlogPostProps {
   title: string;
@@ -19,9 +19,9 @@ const UpdateButton = styled.button`
   border-radius: 5px;
   border-width: 1px;
   border-style: solid;
-  cursor:pointer;
+  cursor: pointer;
   overflow: hidden;
-  font-family: 'Amatic SC', cursive;
+  font-family: "Amatic SC", cursive;
   font-size: 20px;
   &:hover {
     color: rgb(59, 65, 68);
@@ -35,24 +35,30 @@ const UpdateButton = styled.button`
   }
 `;
 
-
 const UpdateBlogPost: React.FC<UpdateBlogPostProps> = (props) => {
-  const [update,setUpdate] = useState(false);
+  const [update, setUpdate] = useState(false);
   if (update) {
     return (
       <>
         <UpdateButton onClick={() => setUpdate(!update)}>
           Quit Editing
         </UpdateButton>
-        <UpdateBlog title={props.title} post={props.post} username_id={props.username_id} id={props.id} setPosts={props.setPosts} auth_id={props.auth_id}/>
+        <UpdateBlog
+          title={props.title}
+          post={props.post}
+          username_id={props.username_id}
+          id={props.id}
+          setPosts={props.setPosts}
+          auth_id={props.auth_id}
+        />
       </>
-    )
+    );
   }
-  return(
+  return (
     <UpdateButton onClick={() => setUpdate(!update)}>
       Edit Blog Post
     </UpdateButton>
-  )
+  );
 };
 
 export default UpdateBlogPost;

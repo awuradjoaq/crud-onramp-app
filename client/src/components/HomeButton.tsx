@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import axios from 'axios';
-import styled from 'styled-components';
+import axios from "axios";
+import styled from "styled-components";
 
 // Interfaces
 interface HomeButtonProps {
   setPosts: Function;
-  posts: {[key: string]: string | number}[];
+  posts: { [key: string]: string | number }[];
 }
 
 //Styled Components
@@ -17,11 +17,11 @@ const StyledLink = styled(Link)`
 
 const StyledButton = styled.button`
   background-color: transparent;
-  background-repeat:no-repeat;
+  background-repeat: no-repeat;
   border: none;
-  cursor:pointer;
+  cursor: pointer;
   overflow: hidden;
-  font-family: 'Amatic SC', cursive;
+  font-family: "Amatic SC", cursive;
   font-size: 20px;
   &:hover {
     background-color: rgb(0, 120, 130);
@@ -35,16 +35,15 @@ const StyledButton = styled.button`
     background-color: rgb(224, 247, 248);
     border-color: rgb(0, 120, 130);
   }
-
-`
+`;
 
 const HomeButton: React.FC<HomeButtonProps> = (props) => {
-
   const retrievePosts = () => {
-    axios.get('/blog')
-    .then((result) => props.setPosts(result.data))
-    .catch(error => console.log(error))
-  }
+    axios
+      .get("/blog")
+      .then((result) => props.setPosts(result.data))
+      .catch((error) => console.log(error));
+  };
 
   return (
     <StyledLink to="/">

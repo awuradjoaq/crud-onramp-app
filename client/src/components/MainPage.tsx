@@ -1,7 +1,7 @@
-import React from 'react';
-import BlogPosts from './BlogPost';
-import Search from './Search';
-import styled from 'styled-components';
+import React from "react";
+import BlogPosts from "./BlogPost";
+import Search from "./Search";
+import styled from "styled-components";
 
 // Interfaces
 interface MainPageProps {
@@ -32,18 +32,19 @@ const BlogPostsContainer = styled.div`
 const MainPage: React.FC<MainPageProps> = (props) => {
   return (
     <MainPageContainer>
-      <Search posts={props.posts} setPosts={props.setPosts}/>
+      <Search posts={props.posts} setPosts={props.setPosts} />
       <BlogPostsContainer>
-
-      {
-        props.posts.map(post => (
-          <BlogPosts post={post} key={post.id} setPosts={props.setPosts} userId={props.userId}/>
-          ))
-        }
+        {props.posts.map((post) => (
+          <BlogPosts
+            post={post}
+            key={post.id}
+            setPosts={props.setPosts}
+            userId={props.userId}
+          />
+        ))}
       </BlogPostsContainer>
     </MainPageContainer>
-  )
-
+  );
 };
 
 export default MainPage;

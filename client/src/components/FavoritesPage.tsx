@@ -22,8 +22,7 @@ const FavoritesPageContainer = styled.div`
   height: 100%;
 `;
 
-const FavoritesPostsContainer = styled.div`
-`;
+const FavoritesPostsContainer = styled.div``;
 
 const FavoritesPage: React.FC<FavoritesPageProps> = (props) => {
   return (

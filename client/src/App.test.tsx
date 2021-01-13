@@ -11,7 +11,4 @@ it("renders without crashing", () => {
   ReactDOM.render(<App />, div);
 });
 
-it("renders Log In message", () => {
-  render(<App />);
-  expect(screen.getByText("Sign Up or Log In")).toBeInTheDocument();
-});
+

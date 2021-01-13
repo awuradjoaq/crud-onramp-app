@@ -20,14 +20,17 @@ const StyledSpan = styled.span`
   position: relative;
   right: 20px;
   bottom: 5px;
-`
+`;
 
 const Profile: React.FC<ProfileProps> = (props) => {
   const [open, setOpen] = useState(false);
   if (open) {
     return (
       <StyledSpan>
-        <StyledImage src={props.image} onClick={() => setOpen(!open)}></StyledImage>
+        <StyledImage
+          src={props.image}
+          onClick={() => setOpen(!open)}
+        ></StyledImage>
         <h2>{props.nickname}</h2>
         <LogOutPage />
       </StyledSpan>
@@ -35,7 +38,10 @@ const Profile: React.FC<ProfileProps> = (props) => {
   }
   return (
     <StyledSpan>
-      <StyledImage src={props.image} onClick={() => setOpen(!open)}></StyledImage>
+      <StyledImage
+        src={props.image}
+        onClick={() => setOpen(!open)}
+      ></StyledImage>
     </StyledSpan>
   );
 };

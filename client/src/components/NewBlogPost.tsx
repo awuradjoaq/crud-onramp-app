@@ -90,7 +90,7 @@ const ButtonStyle = styled.input`
 const CloseButtonStyle = styled.button`
   font-family: "Amatic SC", cursive;
   margin: 10px;
-  background-color: rgb(255,0,0);
+  background-color: rgb(255, 0, 0);
   border: none;
   border-radius: 16px;
   padding: 5px 12px;
@@ -101,7 +101,7 @@ const CloseButtonStyle = styled.button`
     cursor: pointer;
   }
   &:focus {
-    background-color: rgb(204,0,0);
+    background-color: rgb(204, 0, 0);
   }
   &:active {
     outline: none;
@@ -142,7 +142,7 @@ const NewBlogPost: React.FC<NewBlogPostProps> = (props) => {
             .then((result) => props.setPosts(result.data))
             .catch((error) => console.log(error))
         );
-        props.onClose()
+      props.onClose();
     }
   };
 

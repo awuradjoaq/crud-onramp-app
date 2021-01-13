@@ -42,16 +42,14 @@ interface RemoveFavorites {
 }
 
 export const createMessage: RequestHandler = (req, res, next) => {
-  console.log(req.body);
-  const {username_id} = req.body;
-  const {auth_id} = req.body;
+  const { username_id } = req.body;
+  const { auth_id } = req.body;
 
   const params: CreateMessage = req.body;
   verifyUser(username_id, (err, result) => {
     if (err) {
-      res.status(400).send(err)
+      res.status(400).send(err);
     } else {
-      console.log(result)
       let authToken = result.rows[0].auth_id;
       if (auth_id === authToken) {
         postMessages(params, (err, result) => {
@@ -62,10 +60,10 @@ export const createMessage: RequestHandler = (req, res, next) => {
           }
         });
       } else {
-        res.status(400).send()
+        res.status(400).send();
       }
     }
-  })
+  });
 };
 
 export const createUser: RequestHandler = (req, res, next) => {
@@ -82,12 +80,24 @@ export const createUser: RequestHandler = (req, res, next) => {
 export const createFavorite: RequestHandler = (req, res, next) => {
   const params: PostFavorites = req.body;
   const { userId } = req.params;
+  const { auth_id } = req.body;
   const numId = +userId;
-  postFavorites(numId, params, (err, result) => {
+  verifyUser(numId, (err, result) => {
     if (err) {
-      res.status(400).send(err);
+      res.status(400).send();
     } else {
-      res.status(201).send();
+      let authToken = result.rows[0].auth_id;
+      if (auth_id === authToken) {
+        postFavorites(numId, params, (err, result) => {
+          if (err) {
+            res.status(400).send(err);
+          } else {
+            res.status(201).send();
+          }
+        });
+      } else {
+        res.status(400).send();
+      }
     }
   });
 };
@@ -134,14 +144,13 @@ export const retrieveFavoriteMessages: RequestHandler = (req, res, next) => {
 };
 
 export const removeMessages: RequestHandler = (req, res, next) => {
-  const {username_id, auth_id} = req.body;
+  const { username_id, auth_id } = req.body;
   verifyUser(username_id, (err, result) => {
     if (err) {
-      res.status(400).send()
+      res.status(400).send();
     } else {
       let authToken = result.rows[0].auth_id;
       if (authToken === auth_id) {
-
         const { id } = req.params;
         const numId = +id;
         deleteMessages(numId, (err, result) => {
@@ -152,10 +161,10 @@ export const removeMessages: RequestHandler = (req, res, next) => {
           }
         });
       } else {
-        res.status(400).send()
+        res.status(400).send();
       }
     }
-  })
+  });
 };
 
 export const removeFavorited: RequestHandler = (req, res, next) => {
@@ -172,13 +181,13 @@ export const removeFavorited: RequestHandler = (req, res, next) => {
 
 export const updatedMessages: RequestHandler = (req, res, next) => {
   const fields: UpdateMessage = req.body;
-  const {username_id} = req.body;
-  const {auth_id} = req.body;
+  const { username_id } = req.body;
+  const { auth_id } = req.body;
   const { id } = req.params;
   const numId = +id;
   verifyUser(username_id, (err, result) => {
     if (err) {
-      res.status(400).send()
+      res.status(400).send();
     } else {
       let authToken = result.rows[0].auth_id;
       if (authToken === auth_id) {
@@ -190,8 +199,8 @@ export const updatedMessages: RequestHandler = (req, res, next) => {
           }
         });
       } else {
-        res.status(400).send()
+        res.status(400).send();
       }
     }
-  })
+  });
 };

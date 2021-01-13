@@ -1,7 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth0 } from "@auth0/auth0-react";
 
 const LogOutButton = styled.button`
   color: rgb(59, 65, 68);
@@ -10,9 +10,9 @@ const LogOutButton = styled.button`
   border-radius: 5px;
   border-width: 1px;
   border-style: solid;
-  cursor:pointer;
+  cursor: pointer;
   overflow: hidden;
-  font-family: 'Amatic SC', cursive;
+  font-family: "Amatic SC", cursive;
   font-size: 20px;
   &:hover {
     color: rgb(59, 65, 68);
@@ -28,11 +28,7 @@ const LogOutButton = styled.button`
 
 const LogOutPage: React.FC = () => {
   const { logout } = useAuth0();
-  return(
-    <LogOutButton onClick={() => logout()}>
-      Log Out
-    </LogOutButton>
-  )
+  return <LogOutButton onClick={() => logout()}>Log Out</LogOutButton>;
 };
 
 export default LogOutPage;

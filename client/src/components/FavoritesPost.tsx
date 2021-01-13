@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import FavoriteButton from "./FavoriteButton";
+import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -40,17 +39,11 @@ const Title = styled.h1`
   font-size: 40px;
 `;
 
-const ArrowIcon = styled.i`
-  display: inline;
-`;
-
 const FavoritePost = styled.article`
   text-align: center;
 `;
 
 const FavoritesPost: React.FC<FavoritesPostProps> = (props) => {
-  const [saved, setSaved] = useState(true);
-
   return (
     <BlogPostContainer>
       <FavoritePost>

@@ -58,7 +58,6 @@ const ButtonStyle = styled.input`
   }
 `;
 
-
 const UpdateBlog: React.FC<UpdateBlogProps> = (props) => {
   const [title, setTitle] = useState(props.title);
   const [post, setPost] = useState(props.post);

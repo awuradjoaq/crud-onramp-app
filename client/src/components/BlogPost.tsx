@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import DeleteBlogPost from "./DeleteBlogPost";
 import FavoriteButton from "./FavoriteButton";
 import styled from "styled-components";
-import moment from "moment";
 
 // Interfaces
 interface BlogPostProps {
@@ -40,10 +39,6 @@ const Title = styled.h1`
   font-size: 40px;
 `;
 
-const ArrowIcon = styled.i`
-  display: inline;
-`;
-
 const BlogDisplayContainer = styled.div`
   width: 80%;
   margin: 0 auto;
@@ -53,7 +48,7 @@ const BlogPost = styled.article`
   text-align: center;
 `;
 
-const PostDisplay: React.FC<BlogPostProps> = (props) => {
+const BlogPosts: React.FC<BlogPostProps> = (props) => {
   let postTemplate = (element: any) => {
     return (
       <BlogPostContainer>
@@ -88,4 +83,4 @@ const PostDisplay: React.FC<BlogPostProps> = (props) => {
   }
 };
 
-export default PostDisplay;
+export default BlogPosts;

@@ -3,6 +3,7 @@ import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import styled from "styled-components";
 
+// Styled Components
 const ButtonStyle = styled.button`
   margin: 0 auto;
   white-space: nowrap;
@@ -13,9 +14,9 @@ const ButtonStyle = styled.button`
   border-radius: 5px;
   border-width: 1px;
   border-style: solid;
-  cursor:pointer;
+  cursor: pointer;
   overflow: hidden;
-  font-family: 'Amatic SC', cursive;
+  font-family: "Amatic SC", cursive;
   font-size: 30px;
   &:hover {
     color: rgb(59, 65, 68);

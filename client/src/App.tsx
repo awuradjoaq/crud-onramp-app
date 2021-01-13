@@ -83,7 +83,8 @@ const App: React.FC = (props) => {
   const [client, setClient] = useState<ClientState | undefined>(undefined);
 
 
-  const { isAuthenticated, user } = useAuth0();
+  const { isAuthenticated, user, isLoading } = useAuth0();
+
 
   useEffect(() => {
     console.log('App useEffect ran!')
@@ -109,7 +110,9 @@ const App: React.FC = (props) => {
 
   }, [isAuthenticated]);
 
-
+  if (isLoading) {
+    return(<div>'Logging In...'</div>);
+  }
   if (isAuthenticated && client) {
     let userInfo = JSON.parse(`${JSON.stringify(user, null, 2)}`);
     return (

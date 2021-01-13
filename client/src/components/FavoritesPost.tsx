@@ -22,7 +22,9 @@ interface FavoritesPostProps {
 // Styled Components
 const BlogPostContainer = styled.div`
   border: 3px solid black;
-  width: 80%;
+  width: 65%;
+  position: relative;
+  top: 90px;
   margin: 10px auto;
   padding: 20px 0px;
 `;

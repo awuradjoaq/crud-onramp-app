@@ -22,7 +22,8 @@ CREATE TABLE favorited (
   id SERIAL,
   username_id int,
   blog_post_id int,
-  PRIMARY KEY (id)
+  PRIMARY KEY (id),
+  UNIQUE(username_id, blog_post_id)
 );
 
 ALTER TABLE "blog_posts" ADD FOREIGN KEY ("username_id") REFERENCES "usernames" ("id") ON DELETE CASCADE;

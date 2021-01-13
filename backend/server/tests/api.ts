@@ -3,7 +3,16 @@ import chaiHttp from "chai-http";
 import "mocha";
 import assert from "assert";
 import { testUser } from "../config";
-import { retrieveMessages } from "../controllers/messages";
+import { retrieveMessage, retrieveMessages } from "../controllers/messages";
+import sinon from "sinon";
+import sinonChai from "sinon-chai";
+import { Router } from "express";
+import { verifyUser, getMessages } from "../models/database";
+
+const router = Router();
+
+chai.should();
+chai.use(sinonChai);
 
 let address = "http://localhost:3001";
 
@@ -46,6 +55,7 @@ describe("API calls", () => {
         });
     });
   });
+
   describe("update blog posts", () => {
     it("should not update message to database", (done) => {
       chai

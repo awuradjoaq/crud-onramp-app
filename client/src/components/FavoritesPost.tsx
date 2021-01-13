@@ -23,7 +23,7 @@ const BlogPostContainer = styled.div`
   border: 3px solid black;
   width: 65%;
   position: relative;
-  top: 90px;
+  top: 50px;
   margin: 10px auto;
   padding: 20px 0px;
 `;

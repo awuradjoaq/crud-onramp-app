@@ -17,6 +17,9 @@ const DeleteButton = styled.i`
   position: relative;
   right: 10px;
   bottom: 1px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const DeleteBlogPost: React.FC<DeleteBlogProps> = (props) => {

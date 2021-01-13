@@ -15,6 +15,13 @@ interface FavoriteButtonProps {
 // Styled Components
 const HeartButton = styled.i`
   margin: 0px 30px;
+  &:hover {
+    cursor: pointer;
+  }
+  &:active {
+    color: red;
+    border: none;
+  }
 `;
 
 const FavoriteButton: React.FC<FavoriteButtonProps> = (props) => {
